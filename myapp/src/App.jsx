@@ -21,7 +21,7 @@ function App() {
     <InterfaceProvider>
       <PortfolioProvider>
         <Header />
-
+        
         <main>
           <Hero />
           {NAVIGATION_MAP.map(({ href, component: Component }) => (

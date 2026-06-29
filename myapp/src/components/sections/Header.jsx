@@ -3,84 +3,77 @@
  */
 
 import { useEffect, useState } from 'react'
-import { usePortfolio } from '../../contexts/PortfolioContext'
+import { useInterface } from '../../contexts'
 import NAVIGATION_MAP from '../../maps/NAVIGATION_MAP'
+import { faSun, faMoon, faHome } from '@fortawesome/free-solid-svg-icons'
+import HeaderButton from '../buttons/HeaderButton'
 
-export default function Header() {
-  const { portfolioData } = usePortfolio()
-  const { profile } = portfolioData
-  const [menuOpen, setMenuOpen] = useState(false)
+const Header = () => {
+  const { theme, toggleTheme } = useInterface()
+
+  /* Scrolled state */
   const [scrolled, setScrolled] = useState(false)
 
+  /* Is dark theme */
+  const isDark = theme === 'dark-mode'
+
+  /* Scroll to top */
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
+  /* Use effect to set scrolled state */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const closeMenu = () => setMenuOpen(false)
-
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-md'
-          : 'bg-transparent'
-      }`}
+      className={`
+        fixed inset-x-0 top-0 z-50 transition-all duration-300 
+        ${scrolled ?
+          'border-b backdrop-blur-md opacity-90' :
+          'border-b border-transparent'
+        }`
+      }
+      style={{
+        backgroundColor: scrolled ? 'var(--header-bg-scrolled)' : 'transparent',
+        borderColor: scrolled ? 'var(--header-border)' : 'transparent',
+      }}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
-        <a
-          href="#"
-          className="text-lg font-bold tracking-tight text-white transition-colors hover:text-sky-400"
-        >
-          {profile?.name?.split(' ').map((n) => n[0]).join('') ?? 'YN'}
-        </a>
+      {/* Header content */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:px-6">
+        {/* Home button */}
+        <HeaderButton
+          label="Home"
+          icon={faHome}
+          onClick={scrollToTop}
+          isExpandLeft={false}
+        />
 
-        <nav className="hidden items-center gap-8 md:flex">
+        {/* Navigation */}
+        <nav className="hidden items-center gap-5 md:flex">
           {NAVIGATION_MAP.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+              className="text-sm font-medium transition-colors hover:bg-[var(--header-hover-bg)] rounded-lg px-3 py-2"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <button
-          type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 text-slate-300 md:hidden"
-          onClick={() => setMenuOpen((open) => !open)}
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-        >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            {menuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
+        {/* Theme toggle button */}
+        <HeaderButton
+          label={isDark ? 'Light mode' : 'Dark mode'}
+          icon={isDark ? faSun : faMoon}
+          onClick={toggleTheme}
+          isExpandLeft={true}
+        />
       </div>
-
-      {menuOpen && (
-        <nav className="border-t border-slate-800 bg-slate-950/95 px-4 py-4 md:hidden">
-          <div className="flex flex-col gap-1">
-            {NAVIGATION_MAP.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={closeMenu}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </nav>
-      )}
     </header>
   )
 }
+
+export default Header

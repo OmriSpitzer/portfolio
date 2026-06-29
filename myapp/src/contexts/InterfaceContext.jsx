@@ -20,11 +20,11 @@ export const InterfaceProvider = ({ children }) => {
         setTheme(theme === 'dark-mode' ? 'light-mode' : 'dark-mode');
     }
 
-    return <InterfaceContext.Provider value={{ theme, toggleTheme }} >
-        <div className={`min-h-screen ${theme} text-slate-100`}>
+    return <InterfaceContext.Provider value={{ theme, toggleTheme }}>
+        <div className={`min-h-screen ${theme}`}>
             {children}
         </div>
-    </InterfaceContext.Provider >
+    </InterfaceContext.Provider>
 }
 
 /* Export the hook */
