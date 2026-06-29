@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dark-mode {
+  background-color: #1a202c;
+  color: #f7fafc;
+}
+
+#light-mode {
+  background-color: #f7fafc;
+  color: #1a202c;
+}

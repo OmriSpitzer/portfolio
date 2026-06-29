@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "role": "Software Engineer",
+      "company": "Company Name",
+      "period": "2024 – Present",
+      "description": "Brief description of your role, responsibilities, and the impact you made.",
+      "highlights": [
+        "Key achievement or responsibility",
+        "Another notable accomplishment"
+      ]
+    },
+    {
+      "id": "2",
+      "role": "Junior Developer",
+      "company": "Previous Company",
+      "period": "2022 – 2024",
+      "description": "Describe your previous role and what you learned or delivered.",
+      "highlights": [
+        "Project or feature you shipped",
+        "Technology or process you improved"
+      ]
+    }
+  ]
+}
