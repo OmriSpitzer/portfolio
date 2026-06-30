@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useInterface } from '../../contexts'
 import NAVIGATION_MAP from '../../maps/NAVIGATION_MAP'
 import { faSun, faMoon, faHome } from '@fortawesome/free-solid-svg-icons'
-import HeaderButton from '../buttons/HeaderButton'
+import { HeaderButton } from '../buttons'
 
 const Header = () => {
   const { theme, toggleTheme } = useInterface()
