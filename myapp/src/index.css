@@ -12,7 +12,7 @@ body {
 }
 
 .dark-mode {
-  background-color: #1a202c;
+  background-color: #111827;
   --color: #f7fafc;
   color: var(--color);
   --color-secondary: #e6e6e6;
@@ -21,7 +21,7 @@ body {
 }
 
 .light-mode {
-  background-color: #f7fafc;
+  background-color: #f0f4fc;
   --color: #1a202c;
   color: var(--color);
   --color-secondary: #334155;

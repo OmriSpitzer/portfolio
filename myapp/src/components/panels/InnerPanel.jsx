@@ -2,9 +2,13 @@
  * Inner panel background component
  */
 
-const InnerPanel = ({ children, className = '' }) => {
+import { PANEL_UI_MAP } from '../../maps'
+
+const InnerPanel = ({ children, className = '', color = 'default' }) => {
+    const colorClass = PANEL_UI_MAP[color] || PANEL_UI_MAP.default;
+    
     return (
-        <div className={`bg-gray-400/30 px-3 py-2 rounded-lg ${className}`}>
+        <div className={`${colorClass} px-3 py-2 rounded-lg ${className}`}>
             {children}
         </div>
     )

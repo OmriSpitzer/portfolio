@@ -38,10 +38,7 @@ const About = () => {
 
             {/* About Me - description */}
             <Panel color='blue'>
-              <p
-                className="text-xl font-medium tracking-wider"
-                
-              >
+              <p className="text-xl font-medium tracking-wider" >
                 {profile.about}
               </p>
             </Panel>
