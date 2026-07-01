@@ -7,6 +7,7 @@ import { usePortfolio } from '../../contexts'
 import Section from './Section'
 import { faMapMarkerAlt, faEnvelope, faUser, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Panel from '../panels/Panel'
 
 const About = () => {
   const { portfolioData } = usePortfolio()
@@ -36,16 +37,18 @@ const About = () => {
             />
 
             {/* About Me - description */}
-            <p
-              className="text-xl font-medium tracking-wider bg-gray-300/30 p-5 rounded-2xl"
-              style={{ color: 'var(--color-tertiary)' }}
-            >
-              {profile.about}
-            </p>
+            <Panel color='blue'>
+              <p
+                className="text-xl font-medium tracking-wider"
+                
+              >
+                {profile.about}
+              </p>
+            </Panel>
           </div>
 
           {/* Details */}
-          <div className="bg-gray-300/30 p-5 rounded-2xl col-span-2">
+          <Panel className="col-span-2" color='blue'>
             {/* Details header */}
             <p className="mb-4 text-lg font-semibold uppercase tracking-wider"
               style={{ color: 'var(--color-accent)' }}>
@@ -70,7 +73,7 @@ const About = () => {
                   {detail.href ? (
                     <a
                       href={detail.href}
-                      className="text-xl tracking-widest underline transition-colors duration-300 hover:text-sky-400"
+                      className="text-xl tracking-widest underline hover:text-sky-400"
                     >
                       {detail.value}
                     </a>
@@ -82,7 +85,7 @@ const About = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </Panel>
         </div>
       </div>
     </Section>

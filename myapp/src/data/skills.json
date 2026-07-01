@@ -1,16 +1,46 @@
 {
   "categories": [
     {
+      "id": "languages",
+      "name": "Languages",
+      "skills": [
+        "Python",
+        "JavaScript",
+        "SQL",
+        "C/C++"
+      ]
+    },
+    {
+      "id": "frontend",
       "name": "Frontend",
-      "skills": ["React", "JavaScript", "TypeScript", "Tailwind CSS", "HTML/CSS"]
+      "skills": [
+        "React",
+        "Tailwind CSS",
+        "TypeScript",
+        "HTML/CSS"
+      ]
     },
     {
+      "id": "backend",
       "name": "Backend",
-      "skills": ["Node.js", "REST APIs", "PostgreSQL"]
+      "skills": [
+        "Node.js",
+        "REST APIs",
+        "FastAPI",
+        "Flask"
+      ]
     },
     {
+      "id": "other",
       "name": "Tools & Other",
-      "skills": ["Git", "Docker", "CI/CD", "Figma"]
+      "skills": [
+        "Git",
+        "Docker",
+        "Figma",
+        "MongoDB",
+        "PostgreSQL",
+        "MySQL"
+      ]
     }
   ]
 }

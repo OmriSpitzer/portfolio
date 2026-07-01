@@ -31,7 +31,7 @@ export const InterfaceProvider = ({ children }) => {
     }
 
     return <InterfaceContext.Provider value={{ theme, isDark, toggleTheme, pageCount }}>
-        <div className={`min-h-screen ${theme}`}>
+        <div className={`min-h-screen ${theme} transition-all duration-300`}>
             {children}
         </div>
     </InterfaceContext.Provider>
