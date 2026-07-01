@@ -1,4 +1,4 @@
-import SectionTitle from '../SectionTitle'
+import SectionTitle from './SectionTitle'
 import ProjectCard from '../cards/ProjectCard'
 import { usePortfolio } from '../../contexts/PortfolioContext'
 

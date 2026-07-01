@@ -1,4 +1,4 @@
-import SectionTitle from '../SectionTitle'
+import SectionTitle from './SectionTitle'
 import { usePortfolio } from '../../contexts/PortfolioContext'
 
 export default function Contact() {

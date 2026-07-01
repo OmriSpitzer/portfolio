@@ -11,7 +11,9 @@ import { PortfolioProvider } from './contexts/PortfolioContext'
 import { InterfaceProvider } from './contexts/InterfaceContext'
 
 /* Components */
-import { Header, Footer, Hero } from './components/sections'
+import Header from './components/sections/Header'
+import Footer from './components/sections/Footer'
+import Hero from './components/sections/Hero'
 
 /* Maps */
 import NAVIGATION_MAP from './maps/NAVIGATION_MAP'

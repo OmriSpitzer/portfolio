@@ -13,26 +13,18 @@ body {
 
 .dark-mode {
   background-color: #1a202c;
-  color: #f7fafc;
+  --color: #f7fafc;
+  color: var(--color);
   --color-secondary: #e6e6e6;
   --color-tertiary: #94a3b8;
   --color-accent: #38bdf8;
-  --header-bg-scrolled: rgb(26 32 44 / 0.9);
-  --header-border: rgb(148 163 184 / 0.2);
-  --header-menu-bg: rgb(26 32 44 / 0.95);
-  --header-hover-bg: rgb(51 65 85 / 0.6);
-  --header-button-border: rgb(148 163 184 / 0.3);
 }
 
 .light-mode {
   background-color: #f7fafc;
-  color: #1a202c;
+  --color: #1a202c;
+  color: var(--color);
   --color-secondary: #334155;
   --color-tertiary: #64748b;
   --color-accent: #0284c7;
-  --header-bg-scrolled: rgb(247 250 252 / 0.9);
-  --header-border: rgb(148 163 184 / 0.35);
-  --header-menu-bg: rgb(247 250 252 / 0.98);
-  --header-hover-bg: rgb(226 232 240 / 0.8);
-  --header-button-border: rgb(148 163 184 / 0.45);
 }

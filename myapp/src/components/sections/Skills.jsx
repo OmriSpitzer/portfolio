@@ -1,14 +1,14 @@
-import SectionTitle from '../SectionTitle'
+import SectionTitle from './SectionTitle'
 import SkillBadge from '../badges/SkillBadge'
 import { usePortfolio } from '../../contexts/PortfolioContext'
-
+import Section from './Section'
 export default function Skills() {
   const { portfolioData } = usePortfolio()
   const { skills } = portfolioData
   if (!skills?.categories?.length) return null
 
   return (
-    <section id="skills" className="scroll-mt-20 bg-slate-900/30 py-20 md:py-28">
+    <Section id="skills">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <SectionTitle
           label="Skills"
@@ -34,6 +34,6 @@ export default function Skills() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   )
 }

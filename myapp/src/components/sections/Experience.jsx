@@ -1,4 +1,4 @@
-import SectionTitle from '../SectionTitle'
+import SectionTitle from './SectionTitle'
 import TimelineItem from '../TimelineItem'
 import { usePortfolio } from '../../contexts/PortfolioContext'
 

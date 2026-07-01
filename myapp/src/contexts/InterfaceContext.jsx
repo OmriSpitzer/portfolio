@@ -3,12 +3,14 @@
  */
 
 import { createContext, useState, useContext } from 'react'
+import NAVIGATION_MAP from '../maps/NAVIGATION_MAP'
 
 /* Create the context */
 const InterfaceContext = createContext({
     theme: 'dark-mode',
     isDark: true,
-    toggleTheme: () => { }
+    toggleTheme: () => { },
+    pageCount: () => { }
 });
 
 /* Create the provider */
@@ -24,7 +26,11 @@ export const InterfaceProvider = ({ children }) => {
         setIsDark(newIsDark);
     }
 
-    return <InterfaceContext.Provider value={{ theme, isDark, toggleTheme }}>
+    const pageCount = (id) => {
+        return NAVIGATION_MAP.findIndex(page => page.id === id);
+    }
+
+    return <InterfaceContext.Provider value={{ theme, isDark, toggleTheme, pageCount }}>
         <div className={`min-h-screen ${theme}`}>
             {children}
         </div>

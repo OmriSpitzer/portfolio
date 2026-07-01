@@ -1,55 +1,92 @@
-import SectionTitle from '../SectionTitle'
-import { usePortfolio } from '../../contexts/PortfolioContext'
+/**
+ * About section - Introduction to the portfolio
+ */
 
-export default function About() {
+import SectionTitle from './SectionTitle'
+import { usePortfolio } from '../../contexts'
+import Section from './Section'
+import { faMapMarkerAlt, faEnvelope, faUser, faPhone } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+const About = () => {
   const { portfolioData } = usePortfolio()
-  const { profile } = portfolioData
-  if (!profile) return null
+  if (!portfolioData.profile) return null
+
+  /* Profile data */
+  const { profile } = portfolioData;
+
+  /* Detail list */
+  const detail_list = [
+    { label: 'Location', value: profile.location, icon: faMapMarkerAlt },
+    { label: 'Email (send me an email)', value: profile.email, icon: faEnvelope, href: `mailto:${profile.email}` },
+    { label: 'Phone (call me)', value: profile.phone, icon: faPhone, href: `tel:${profile.phone.replace(/[^\d+]/g, '')}` },
+    { label: 'Role', value: profile.title, icon: faUser },
+  ]
 
   return (
-    <section id="about" className="scroll-mt-20 py-20 md:py-28">
-      <div className="mx-auto max-w-6xl px-4 md:px-6">
-        <SectionTitle
-          label="About"
-          title="Who I Am"
-          description="A brief introduction to my background and what I bring to the table."
-        />
+    <Section id="about">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid grid-cols-6 gap-8">
+          <div className="col-span-4">
+            {/* Header */}
+            <SectionTitle
+              label="About"
+              title="Who I Am"
+              description="A brief introduction to my background and what I bring to the table"
+            />
 
-        <div className="grid gap-8 md:grid-cols-5 md:gap-12">
-          <div className="md:col-span-3">
-            <p className="text-base leading-relaxed text-slate-400 md:text-lg">
+            {/* About Me - description */}
+            <p
+              className="text-xl font-medium tracking-wider bg-gray-300/30 p-5 rounded-2xl"
+              style={{ color: 'var(--color-tertiary)' }}
+            >
               {profile.about}
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-900/50 p-6 md:col-span-2">
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-500">
+          {/* Details */}
+          <div className="bg-gray-300/30 p-5 rounded-2xl col-span-2">
+            {/* Details header */}
+            <p className="mb-4 text-lg font-semibold uppercase tracking-wider"
+              style={{ color: 'var(--color-accent)' }}>
               Details
-            </h3>
-            <dl className="space-y-4">
-              <div>
-                <dt className="text-xs text-slate-500">Location</dt>
-                <dd className="mt-1 text-sm text-white">{profile.location}</dd>
-              </div>
-              <div>
-                <dt className="text-xs text-slate-500">Email</dt>
-                <dd className="mt-1 text-sm">
-                  <a
-                    href={`mailto:${profile.email}`}
-                    className="text-sky-400 transition-colors hover:text-sky-300"
-                  >
-                    {profile.email}
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dt className="text-xs text-slate-500">Role</dt>
-                <dd className="mt-1 text-sm text-white">{profile.title}</dd>
-              </div>
-            </dl>
+            </p>
+
+            {/* Details items */}
+            <div className="w-full h-full flex flex-col gap-5">
+              {detail_list.map((detail) => (
+                <div key={detail.label} className="flex flex-col gap-1">
+                  {/* Detail Title */}
+                  <div className="flex flex-row gap-2 items-center">
+                    <FontAwesomeIcon
+                      icon={detail.icon}
+                      className="text-2xl tracking-wider"
+                      style={{ color: 'var(--color-tertiary)' }}
+                    />
+                    <p className="text-xl tracking-wider" style={{ color: 'var(--color-tertiary)' }}>{detail.label}</p>
+                  </div>
+
+                  {/* Detail Value */}
+                  {detail.href ? (
+                    <a
+                      href={detail.href}
+                      className="text-xl tracking-widest underline transition-colors duration-300 hover:text-sky-400"
+                    >
+                      {detail.value}
+                    </a>
+                  ) : (
+                    <p className="text-xl tracking-widest" style={{ color: 'var(--color)' }}>
+                      {detail.value}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   )
 }
+
+export default About;
