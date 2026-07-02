@@ -1,10 +1,10 @@
 /**
- * Header button component
+ * Expanding hover button component
  */
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const HeaderButton = ({ label, icon, onClick, isExpandLeft = false }) => {
+const ExpandButton = ({ label, icon, onClick, isExpandLeft = false }) => {
     /* If no label and no icon, return null */
     if (!label && !icon) {
         return null;
@@ -43,4 +43,4 @@ const HeaderButton = ({ label, icon, onClick, isExpandLeft = false }) => {
     )
 }
 
-export default HeaderButton
+export default ExpandButton

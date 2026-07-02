@@ -1,31 +1,61 @@
-{
-  "items": [
-    {
-      "id": "1",
-      "title": "Project Name",
-      "description": "A short description of what this project does, the problem it solves, and your role in building it.",
-      "technologies": ["React", "Node.js", "MongoDB"],
-      "imageUrl": "",
-      "liveUrl": "#",
-      "repoUrl": "#"
-    },
-    {
-      "id": "2",
-      "title": "Another Project",
-      "description": "Describe another project — highlight interesting technical challenges or outcomes.",
-      "technologies": ["TypeScript", "PostgreSQL"],
-      "imageUrl": "",
-      "liveUrl": "#",
-      "repoUrl": "#"
-    },
-    {
-      "id": "3",
-      "title": "Side Project",
-      "description": "Personal or open-source work that showcases your skills and curiosity.",
-      "technologies": ["Python", "FastAPI", "Docker"],
-      "imageUrl": "",
-      "liveUrl": "#",
-      "repoUrl": "#"
-    }
-  ]
-}
+[
+  {
+    "title": "Model-Based Code GenAI (MOSAIC)",
+    "description": "Multi-role GenAI platform that converts client requirements into production-ready full-stack web applications",
+    "contributions": [
+      "Design of agent architecture",
+      "Development of custom tool integrations",
+      "Contribution to prompt engineering strategies"
+    ],
+    "technologies": [
+      "Google ADK",
+      "Gemini API",
+      "Python",
+      "React",
+      "Tailwind CSS",
+      "FastAPI",
+      "MongoDB"
+    ],
+    "image": "MOSAIC_img.png",
+    "liveUrl": "https://model-based-code-genai-1.onrender.com",
+    "repoUrl": "https://github.com/Stava06/Model-Based-Code-GenAI"
+  },
+  {
+    "title": "Concert Discovery Website",
+    "description": "Event discovery engine that orchestrates multi-source data from Ticketmaster and Spotify APIs",
+    "contributions": [
+      "Full implementation of the architecture and functionality",
+      "Development of server-side data aggregation and filtering logic",
+      "Optimization of asynchronous client-server interactions"
+    ],
+    "technologies": [
+      "Node.js",
+      "React",
+      "Tailwind CSS",
+      "MongoDB",
+      "REST APIs",
+      "WebSocket"
+    ],
+    "image": "concert_discovery_img.png",
+    "liveUrl": "https://www.bandvoyage.com/",
+    "repoUrl": "https://github.com/IOC-Group/Bandvoyage_project"
+  },
+  {
+    "title": "Interactive Math Learning Website",
+    "description": "Interactive full-stack math learning platform that enables multiple math solving games for students",
+    "contributions": [
+      "Development of real-time multiplayer game",
+      "Design of components and game logic architecture",
+      "Development of dynamic question generation"
+    ],
+    "technologies": [
+      "React",
+      "Node.js",
+      "WebSockets",
+      "MongoDB"
+    ],
+    "image": "path_to_math_img.png",
+    "liveUrl": "https://path-to-math.vercel.app/",
+    "repoUrl": "https://github.com/YardenNahum/PathToMath"
+  }
+]

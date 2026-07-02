@@ -6,16 +6,16 @@ import SectionTitle from './SectionTitle'
 import Section from './Section'
 import SkillBadge from '../badges/SkillBadge'
 import { usePortfolio } from '../../contexts'
-import Panel from '../panels/Panel'
+import { Panel } from '../panels'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCode, faServer, faWrench, faLanguage } from '@fortawesome/free-solid-svg-icons'
 
 const Skills = () => {
   const { portfolioData } = usePortfolio()
-  if (!portfolioData?.skills?.categories?.length) return null
+  if (!portfolioData?.skills) return null
 
   /* Skills data */
-  const { categories } = portfolioData.skills;
+  const { skills } = portfolioData
 
   const getUIInfo = (id) => {
     switch (id) {
@@ -43,25 +43,25 @@ const Skills = () => {
 
         {/* Skills categories */}
         <div className="w-full flex flex-col gap-5">
-          {categories.map((category) => {
-            const categoryUI = getUIInfo(category.id);
+          {skills.map((skill) => {
+            const skillUI = getUIInfo(skill.id);
 
             return (
-              <Panel key={category.id} color={categoryUI.color} className="flex-1">
+              <Panel key={skill.id} color={skillUI.color} className="flex-1">
                 {/* Category name */}
                 <div className="flex flex-row gap-2 items-center mb-4">
                   <FontAwesomeIcon
-                    icon={categoryUI.icon}
+                    icon={skillUI.icon}
                     className="text-xl"
                   />
                   <p className="text-2xl tracking-widest font-medium">
-                    {category.name}
+                    {skill.name}
                   </p>
                 </div>
 
                 {/* Category skills */}
                 <div className="flex flex-wrap gap-4">
-                  {category.skills.map((skill) => (
+                  {skill.skills.map((skill) => (
                     <SkillBadge key={skill} skill={skill} />
                   ))}
                 </div>

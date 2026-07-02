@@ -7,7 +7,7 @@ import { usePortfolio } from '../../contexts'
 import Section from './Section'
 import { faMapMarkerAlt, faEnvelope, faUser, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Panel from '../panels/Panel'
+import { Panel } from '../panels'
 
 const About = () => {
   const { portfolioData } = usePortfolio()

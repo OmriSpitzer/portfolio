@@ -1,46 +1,44 @@
-{
-  "categories": [
-    {
-      "id": "languages",
-      "name": "Languages",
-      "skills": [
-        "Python",
-        "JavaScript",
-        "SQL",
-        "C/C++"
-      ]
-    },
-    {
-      "id": "frontend",
-      "name": "Frontend",
-      "skills": [
-        "React",
-        "Tailwind CSS",
-        "TypeScript",
-        "HTML/CSS"
-      ]
-    },
-    {
-      "id": "backend",
-      "name": "Backend",
-      "skills": [
-        "Node.js",
-        "REST APIs",
-        "FastAPI",
-        "Flask"
-      ]
-    },
-    {
-      "id": "other",
-      "name": "Tools & Other",
-      "skills": [
-        "Git",
-        "Docker",
-        "Figma",
-        "MongoDB",
-        "PostgreSQL",
-        "MySQL"
-      ]
-    }
-  ]
-}
+[
+  {
+    "id": "languages",
+    "name": "Languages",
+    "skills": [
+      "Python",
+      "JavaScript",
+      "SQL",
+      "C/C++"
+    ]
+  },
+  {
+    "id": "frontend",
+    "name": "Frontend",
+    "skills": [
+      "React",
+      "Tailwind CSS",
+      "TypeScript",
+      "HTML/CSS"
+    ]
+  },
+  {
+    "id": "backend",
+    "name": "Backend",
+    "skills": [
+      "Node.js",
+      "REST APIs",
+      "FastAPI",
+      "Flask"
+    ]
+  },
+  {
+    "id": "other",
+    "name": "Tools & Other",
+    "skills": [
+      "Git",
+      "Docker",
+      "Figma",
+      "MongoDB",
+      "PostgreSQL",
+      "MySQL"
+    ]
+  }
+]

@@ -1,67 +1,129 @@
-export default function ProjectCard({ project }) {
-  const { title, description, technologies, imageUrl, liveUrl, repoUrl } = project
+/**
+ * Project card component
+ */
+
+import { ListedLabel } from '../labels'
+import { InnerPanel } from '../panels'
+import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+
+const ProjectCard = ({ project, onCardClick = () => { } }) => {
+  const [isHovering, setIsHovering] = useState(false)
+
+  /* If no project, return null */
+  if (!project) return null;
+
+  /* Project data */
+  const { title, description, contributions, technologies, image, liveUrl, repoUrl } = project;
+
+  /* Fallback letter when no image is provided*/
+  const fallbackLetter = title.charAt(0);
+
+  const toggleHover = () => setIsHovering(!isHovering)
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50 transition-all duration-300 hover:border-sky-500/40 hover:shadow-lg hover:shadow-sky-500/5">
-      <div className="relative aspect-video overflow-hidden bg-slate-800">
-        {imageUrl ? (
+    <article
+      className="flex h-full flex-col overflow-hidden rounded-2xl hover:shadow-lg 
+      hover:shadow-sky-500/50 hover:border-sky-500/50 border border-transparent t
+      ransition-all duration-200"
+      onMouseEnter={toggleHover}
+      onMouseLeave={toggleHover}
+      onClick={onCardClick}
+    >
+      {/* Project Image */}
+      <div className="relative aspect-video overflow-hidden">
+        {image ? (
           <img
-            src={imageUrl}
-            alt={title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            src={image}
+            alt={fallbackLetter}
+            className="h-full w-full object-cover"
           />
         ) : (
-          <div className="flex h-full items-center justify-center bg-gradient-to-br from-slate-800 to-slate-900">
-            <span className="text-4xl font-bold text-slate-700">
-              {title.charAt(0)}
+          <div
+            className="flex h-full items-center justify-center"
+            style={{ backgroundColor: 'var(--color-tertiary)' }}
+          >
+            <span className="text-6xl font-bold">
+              {fallbackLetter}
             </span>
           </div>
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-xl font-semibold text-white">{title}</h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">
+      <div
+        className={`flex flex-col p-3 gap-3 ${isHovering ? 'overflow-y-auto' : 'overflow-hidden'}`}
+        style={{ backgroundColor: 'var(--color-background)' }}
+      >
+        {/* Project Title */}
+        <p
+          className="text-xl font-bold tracking-widest"
+          style={{ color: 'var(--color-accent)' }}
+        >
+          {title}
+        </p>
+
+        {/* Project Description */}
+        <p
+          className="text-md tracking-wide"
+          style={{ color: 'var(--color-secondary)' }}
+        >
           {description}
         </p>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          {technologies.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-md bg-slate-800 px-2 py-0.5 text-xs text-slate-300"
-            >
-              {tech}
-            </span>
+        {/* Project Contributions */}
+        <div className="flex flex-wrap gap-2">
+          {contributions.map((contribution) => (
+            <ListedLabel key={contribution}>
+              <p className="text-xs tracking-wider font-medium">
+                {contribution}
+              </p>
+            </ListedLabel>
           ))}
         </div>
 
-        <div className="mt-6 flex gap-4">
-          {liveUrl && liveUrl !== '#' && (
+        {/* Project Technologies */}
+        <div className="flex flex-wrap gap-3 mt-2">
+          {technologies.map((tech) => (
+            <InnerPanel key={tech} color='blue'>
+              <p className="text-xs tracking-wider font-semibold">
+                {tech}
+              </p>
+            </InnerPanel>
+          ))}
+        </div>
+
+        {/* Project Links */}
+        <div className="mt-auto flex flex-wrap gap-2 pt-2">
+          {liveUrl && (
             <a
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-sky-400 transition-colors hover:text-sky-300"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-sky-400"
             >
-              Live Demo →
+              <FontAwesomeIcon icon={faExternalLinkAlt} className="text-xs" />
+              Live Demo
             </a>
           )}
-          {repoUrl && repoUrl !== '#' && (
+
+          {repoUrl && (
             <a
               href={repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:border-sky-500/50 hover:text-sky-400"
             >
-              Source Code →
+              <FontAwesomeIcon icon={faGithub} className="text-xs" />
+              Source
             </a>
-          )}
-          {(liveUrl === '#' || !liveUrl) && (repoUrl === '#' || !repoUrl) && (
-            <span className="text-sm text-slate-600">Add links in src/data/projects.json</span>
           )}
         </div>
       </div>
     </article>
   )
 }
+export default ProjectCard;

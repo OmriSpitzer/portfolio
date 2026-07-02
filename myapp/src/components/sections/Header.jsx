@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import { useInterface } from '../../contexts'
 import NAVIGATION_MAP from '../../maps/NAVIGATION_MAP'
 import { faSun, faMoon, faHome } from '@fortawesome/free-solid-svg-icons'
-import { HeaderButton } from '../buttons'
+import { ExpandButton } from '../buttons'
 
 const Header = () => {
   const { theme, toggleTheme } = useInterface()
@@ -44,7 +44,7 @@ const Header = () => {
       {/* Header content */}
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:px-6">
         {/* Home button */}
-        <HeaderButton
+        <ExpandButton
           label="Home"
           icon={faHome}
           onClick={scrollToTop}
@@ -65,7 +65,7 @@ const Header = () => {
         </nav>
 
         {/* Theme toggle button */}
-        <HeaderButton
+        <ExpandButton
           label={isDark ? 'Light mode' : 'Dark mode'}
           icon={isDark ? faSun : faMoon}
           onClick={toggleTheme}

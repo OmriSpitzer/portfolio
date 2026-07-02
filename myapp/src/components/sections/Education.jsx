@@ -6,15 +6,26 @@ import SectionTitle from './SectionTitle'
 import { usePortfolio } from '../../contexts'
 import Section from './Section'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGraduationCap, faSquare } from '@fortawesome/free-solid-svg-icons'
-import Panel from '../panels/Panel'
-import InnerPanel from '../panels/InnerPanel'
+import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
+import { Panel, InnerPanel } from '../panels'
+import { ListedLabel } from '../labels'
+import { useEffect, useState } from 'react'
 
 const Education = () => {
+  const [displayHighlights, setDisplayHighlights] = useState([])
   const { portfolioData } = usePortfolio()
 
-  if (!portfolioData.education?.items?.length) return null
+  if (!portfolioData?.education) return null
+
+  /* Education data */
   const { education } = portfolioData
+  const { degree, institution, period, highlights, courses } = education
+
+  /* Add courses to highlights if there are any */
+  useEffect(() => {
+    if (courses.length > 0)
+      setDisplayHighlights([...highlights, 'Highlighted courses:'])
+  }, [courses, highlights])
 
   return (
     <Section id="education">
@@ -28,62 +39,47 @@ const Education = () => {
 
         {/* Timeline items */}
         <div>
-          {education.items.map((item, index) => {
-            const { id, degree, institution, period, highlights, courses } = item
+          <Panel className="flex flex-col gap-3">
+            {/* Detail Title */}
+            <div className="flex flex-row justify-between">
+              {/* Degree */}
+              <div className="flex flex-row gap-2 items-center">
+                <FontAwesomeIcon
+                  icon={faGraduationCap}
+                  className="text-2xl tracking-wider"
+                />
+                <p className="text-2xl tracking-widest font-medium">{degree}</p>
+              </div>
 
-            /* Add courses to highlights if there are any */
-            if (courses.length > 0)
-              highlights.push('Highlighted courses:')
+              {/* Period */}
+              <p className="text-xl tracking-wider" style={{ color: 'var(--color-accent)' }}>{period}</p>
+            </div>
 
-            return (
-              <Panel key={id} className="flex flex-col gap-3">
-                {/* Detail Title */}
-                <div className="flex flex-row justify-between">
-                  {/* Degree */}
-                  <div className="flex flex-row gap-2 items-center">
-                    <FontAwesomeIcon
-                      icon={faGraduationCap}
-                      className="text-2xl tracking-wider"
-                    />
-                    <p className="text-2xl tracking-widest font-medium">{degree}</p>
-                  </div>
+            {/* Institution */}
+            <p className="text-xl tracking-wider" style={{ color: 'var(--color-tertiary)' }}>{institution}</p>
 
-                  {/* Period */}
-                  <p className="text-xl tracking-wider" style={{ color: 'var(--color-accent)' }}>{period}</p>
-                </div>
+            {/* Highlights */}
+            <div className="flex flex-col gap-2">
+              {displayHighlights.map((highlight, index) => (
+                <ListedLabel key={'highlight-' + index}>
+                  <p className="text-lg tracking-wider font-medium">
+                    {highlight}
+                  </p>
+                </ListedLabel>
+              ))}
+            </div>
 
-                {/* Institution */}
-                <p className="text-xl tracking-wider" style={{ color: 'var(--color-tertiary)' }}>{institution}</p>
-
-                {/* Highlights */}
-                <div className="flex flex-col gap-2">
-                  {highlights.map((highlight, index) => (
-                    <div key={'highlight-' + index} className="flex flex-row gap-3 items-center">
-                      <FontAwesomeIcon
-                        icon={faSquare}
-                        className="text-sm tracking-wider"
-                        style={{ color: 'var(--color-accent)' }}
-                      />
-                      <p className="text-lg tracking-wider font-medium">
-                        {highlight}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Course List */}
-                {courses.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {courses.map((course, index) => (
-                      <InnerPanel key={'course-' + index} color='blue'>
-                        <p className="text-sm tracking-wider font-medium">{course}</p>
-                      </InnerPanel>
-                    ))}
-                  </div>
-                )}
-              </Panel>
-            )
-          })}
+            {/* Course List */}
+            {courses.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {courses.map((course, index) => (
+                  <InnerPanel key={'course-' + index} color='blue'>
+                    <p className="text-sm tracking-wider font-medium">{course}</p>
+                  </InnerPanel>
+                ))}
+              </div>
+            )}
+          </Panel>
         </div>
       </div>
     </Section >

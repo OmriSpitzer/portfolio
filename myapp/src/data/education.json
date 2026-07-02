@@ -1,26 +1,21 @@
 {
-  "items": [
-    {
-      "id": "1",
-      "degree": "B.Sc. in Software Engineering",
-      "institution": "Braude College of Engineering, Karmiel, Israel",
-      "period": "2024 – 2026",
-      "highlights": [
-        "Currently graduating with a Bachelor of Science (B.Sc.) in Software Engineering",
-        "Currently with an average of 89 (GPA 3.3)",
-        "Developed practical experience with software engineering principles",
-        "Strengthened problem-solving, system design, and applied machine learning skills through academic projects"
-      ],
-      "courses": [
-        "Advanced Web Development",
-        "Database Systems",
-        "Data Structures",
-        "Algorithms",
-        "Object-Oriented Programming",
-        "Cloud Computing",
-        "Computer Networks",
-        "Cybersecurity & Cryptography"
-      ]
-    }
+  "degree": "B.Sc. in Software Engineering",
+  "institution": "Braude College of Engineering, Karmiel, Israel",
+  "period": "2024 – 2026",
+  "highlights": [
+    "Currently graduating with a Bachelor of Science (B.Sc.) in Software Engineering",
+    "Currently with an average of 89 (GPA 3.3)",
+    "Developed practical experience with software engineering principles",
+    "Strengthened problem-solving, system design, and applied machine learning skills through academic projects"
+  ],
+  "courses": [
+    "Advanced Web Development",
+    "Database Systems",
+    "Data Structures",
+    "Algorithms",
+    "Object-Oriented Programming",
+    "Cloud Computing",
+    "Computer Networks",
+    "Cybersecurity & Cryptography"
   ]
 }

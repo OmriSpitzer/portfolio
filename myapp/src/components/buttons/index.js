@@ -1,2 +1,2 @@
 export { default as HeroButton } from './HeroButton';
-export { default as HeaderButton } from './HeaderButton';
+export { default as ExpandButton } from './ExpandButton';
