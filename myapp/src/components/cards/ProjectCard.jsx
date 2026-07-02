@@ -53,27 +53,32 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
       </div>
 
       <div
-        className={`flex flex-col p-3 gap-3 ${isHovering ? 'overflow-y-auto' : 'overflow-hidden'}`}
+        className={`h-full flex flex-col p-3 gap-3 ${isHovering ? 'overflow-y-auto' : 'overflow-hidden'}`}
         style={{ backgroundColor: 'var(--color-background)' }}
       >
         {/* Project Title */}
-        <p
+        {title && (
+          <p
           className="text-xl font-bold tracking-widest"
           style={{ color: 'var(--color-accent)' }}
         >
           {title}
         </p>
+        )}
 
         {/* Project Description */}
-        <p
+        {description && (
+          <p
           className="text-md tracking-wide"
           style={{ color: 'var(--color-secondary)' }}
         >
           {description}
         </p>
+        )}
 
         {/* Project Contributions */}
-        <div className="flex flex-wrap gap-2">
+        {contributions && (
+          <div className="flex flex-wrap gap-2">
           {contributions.map((contribution) => (
             <ListedLabel key={contribution}>
               <p className="text-xs tracking-wider font-medium">
@@ -81,11 +86,12 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
               </p>
             </ListedLabel>
           ))}
-        </div>
+          </div>
+        )}
 
         {/* Project Technologies */}
         <div className="flex flex-wrap gap-3 mt-2">
-          {technologies.map((tech) => (
+          {technologies && technologies.map((tech) => (
             <InnerPanel key={tech} color='blue'>
               <p className="text-xs tracking-wider font-semibold">
                 {tech}

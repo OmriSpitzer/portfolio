@@ -57,5 +57,17 @@
     "image": "path_to_math_img.png",
     "liveUrl": "https://path-to-math.vercel.app/",
     "repoUrl": "https://github.com/YardenNahum/PathToMath"
+  },
+  {
+    "title": "This Portfolio Website",
+    "description": "Portfolio website built with React, Tailwind CSS, and Vite, showcasing my projects and skills",
+    "technologies": [
+      "React",
+      "Tailwind CSS",
+      "Vite"
+    ],
+    "image": "portfolio_img.png",
+    "liveUrl": "",
+    "repoUrl": "https://github.com/OmriSpitzer/portfolio"
   }
 ]
