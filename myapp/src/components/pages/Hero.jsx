@@ -2,13 +2,14 @@
  * Hero section - Main section of the portfolio
  */
 
-import { usePortfolio } from '../../contexts'
+import { usePortfolio, useInterface } from '../../contexts'
 import { HeroButton } from '../buttons'
 import { SmallHeader } from '../labels'
-import Section from './Section'
+import { Section } from '../sectionUI'
 
 export default function Hero() {
   const { portfolioData } = usePortfolio();
+  const { isMobile } = useInterface();
 
   /* If no profile, return null */
   if (!portfolioData.profile) return null
@@ -17,14 +18,14 @@ export default function Hero() {
   const { profile } = portfolioData;
 
   return (
-    <Section id="hero" isMainPage={true}>
-        <div className="text-left">
+    <Section id="hero">
+        <div className={isMobile ? 'text-center' : 'text-left'}>
           {/* Header */}
           <SmallHeader label="Portfolio" />
 
           {/* Name */}
           <h1
-            className="text-6xl font-bold leading-tight tracking-tight"
+            className={`${isMobile ? 'text-4xl' : 'text-6xl'} font-bold leading-tight tracking-tight`}
             style={{ color: 'var(--color)' }}
           >
             Hi, I&apos;m{' '}
@@ -43,14 +44,14 @@ export default function Hero() {
 
           {/* Tagline */}
           <p
-            className="mt-2 text-lg font-semibold"
+            className={`mt-2 ${isMobile ? 'text-base' : 'text-lg'} font-semibold`}
             style={{ color: 'var(--color-tertiary)' }}
           >
             {profile.tagline}
           </p>
 
           {/* Buttons */}
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className={`mt-10 flex ${isMobile ? 'flex-col gap-8' : 'flex-wrap gap-4'}`}>
             {/* Projects button */}
             <HeroButton label="View Projects" gotoHref="#projects" />
 

@@ -2,13 +2,13 @@
  * Projects section - Featured work
  */
 
-import SectionTitle from './SectionTitle'
-import { usePortfolio } from '../../contexts'
-import Section from './Section'
+import { Section, SectionTitle } from '../sectionUI'
+import { usePortfolio, useInterface } from '../../contexts'
 import { ProjectCarousel } from '../carousel'
 
 const Projects = () => {
   const { portfolioData } = usePortfolio()
+  const { isMobile } = useInterface()
 
   /* If no projects, return null */
   if (!portfolioData?.projects) return null
@@ -16,12 +16,13 @@ const Projects = () => {
 
   return (
     <Section id="projects">
-      <div className="mx-auto max-w-6xl px-4 md:px-6">
+      <div className={`mx-auto max-w-6xl ${isMobile ? 'px-4 flex flex-col gap-4' : 'px-6'}`}>
         {/* Section title */}
         <SectionTitle
           label="Projects"
           title="Featured Work"
           description="A selection of projects that showcase my skills and experience."
+          className={isMobile ? 'mb-0' : ''}
         />
 
         {/* Project carousel */}

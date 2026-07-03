@@ -6,9 +6,11 @@ import { useRef, useState } from 'react'
 import ProjectCard from './ProjectCard'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { ExpandButton } from '../buttons'
+import { useInterface } from '../../contexts'
 
 /* Visible items shown in the carousel */
 const VISIBLE_COUNT = 3
+const MOBILE_VISIBLE_COUNT = 1
 
 /* Reduction percentages for carousel items */
 const HEIGHT_REDUCTION_PERCENTAGE = 30
@@ -18,10 +20,18 @@ const WIDTH_REDUCTION_PERCENTAGE = 20
 const CARD_HEIGHT = 550
 const CARD_WIDTH = 350
 
+/* Mobile card dimensions */
+const MOBILE_CARD_HEIGHT = 500
+
+/* Minimum horizontal travel (px) to register a swipe */
+const SWIPE_THRESHOLD = 50
+
 /* Horizontal distance between carousel slots (side card width + gap) */
 const SLOT_STEP = CARD_WIDTH * (1 - WIDTH_REDUCTION_PERCENTAGE / 100) + 24
 
 const ProjectCarousel = ({ items }) => {
+    const { isMobile } = useInterface()
+
     /* Show index array */
     const [showIndexArray, setShowIndexArray] = useState(() =>
         items?.length ? Array.from({ length: items.length }, (_, i) => i) : []
@@ -37,9 +47,21 @@ const ProjectCarousel = ({ items }) => {
     const isAnimatingRef = useRef(false)
     /* Direction reference */
     const directionRef = useRef(true)
+    /* Touch start x position reference */
+    const touchStartXRef = useRef(null)
 
     /* If no items, return null */
     if (!items?.length) return null
+
+    /* Mobile card width fits the viewport, capped at the desktop width */
+    const mobileCardWidth = Math.min(window.innerWidth - 48, CARD_WIDTH)
+
+    /* Number of visible cards and per-slide travel distance depend on the layout */
+    const visibleCount = isMobile ? MOBILE_VISIBLE_COUNT : VISIBLE_COUNT
+    const slotStep = isMobile ? mobileCardWidth + 24 : SLOT_STEP
+
+    /* Index of the main (fully sized) card in the visible window */
+    const mainCardIndex = isMobile ? 0 : 1
 
     /* Rotate */
     const rotate = (isLeft = true) => {
@@ -51,7 +73,23 @@ const ProjectCarousel = ({ items }) => {
         directionRef.current = isLeft
 
         setEnableSlideTransition(true)
-        setSlideOffset(isLeft ? -SLOT_STEP : SLOT_STEP)
+        setSlideOffset(isLeft ? -slotStep : slotStep)
+    }
+
+    /* Handle touch start */
+    const handleTouchStart = (event) => {
+        touchStartXRef.current = event.touches[0].clientX
+    }
+
+    /* Handle touch end - swipe left goes to next, swipe right goes to previous */
+    const handleTouchEnd = (event) => {
+        if (touchStartXRef.current === null) return
+
+        const deltaX = event.changedTouches[0].clientX - touchStartXRef.current
+        touchStartXRef.current = null
+
+        if (Math.abs(deltaX) < SWIPE_THRESHOLD) return
+        rotate(deltaX < 0)
     }
 
     /* Handle slide transition end */
@@ -87,17 +125,23 @@ const ProjectCarousel = ({ items }) => {
     }
 
     return (
-        <div className="w-full h-full flex flex-row justify-center items-center gap-6">
+        <div className={`w-full h-full flex flex-row justify-center items-center ${isMobile ? 'gap-2' : 'gap-6'}`}>
             {/* Previous button */}
-            <ExpandButton
-                label="Previous"
-                icon={faChevronLeft}
-                onClick={() => rotate(false)}
-                isExpandLeft={true}
-            />
+            {!isMobile && (
+                <ExpandButton
+                    label="Previous"
+                    icon={faChevronLeft}
+                    onClick={() => rotate(false)}
+                    isExpandLeft={true}
+                />
+            )}
 
             {/* Carousel container */}
-            <div className="overflow-hidden">
+            <div
+                className="overflow-hidden"
+                onTouchStart={isMobile ? handleTouchStart : undefined}
+                onTouchEnd={isMobile ? handleTouchEnd : undefined}
+            >
                 <div
                     className="flex flex-row gap-6"
                     style={{
@@ -106,14 +150,14 @@ const ProjectCarousel = ({ items }) => {
                     }}
                     onTransitionEnd={handleSlideTransitionEnd}
                 >
-                    {showIndexArray.slice(0, VISIBLE_COUNT).map((projectIndex, index) => {
+                    {showIndexArray.slice(0, visibleCount).map((projectIndex, index) => {
                         /* Calculate height and width */
-                        let height = CARD_HEIGHT
-                        let width = CARD_WIDTH
+                        let height = isMobile ? MOBILE_CARD_HEIGHT : CARD_HEIGHT
+                        let width = isMobile ? mobileCardWidth : CARD_WIDTH
 
                         /* Check if main card */
-                        const isMainCard = index === 1
-                        /* If not main card, reduce height and width */
+                        const isMainCard = index === mainCardIndex
+                        /* If not main card, reduce height and width (desktop side cards only) */
                         if (!isMainCard) {
                             height -= (HEIGHT_REDUCTION_PERCENTAGE / 100) * CARD_HEIGHT
                             width -= (WIDTH_REDUCTION_PERCENTAGE / 100) * CARD_WIDTH
@@ -127,7 +171,7 @@ const ProjectCarousel = ({ items }) => {
                             >
                                 <ProjectCard
                                     project={items[projectIndex]}
-                                    onCardClick={() => !isMainCard && rotate(index > 1)}
+                                    onCardClick={() => !isMobile && !isMainCard && rotate(index > 1)}
                                 />
                             </div>
                         )
@@ -136,15 +180,16 @@ const ProjectCarousel = ({ items }) => {
             </div>
 
             {/* Next button */}
-            <ExpandButton
-                label="Next"
-                icon={faChevronRight}
-                onClick={() => rotate(true)}
-                isExpandLeft={false}
-            />
+            {!isMobile && (
+                <ExpandButton
+                    label="Next"
+                    icon={faChevronRight}
+                    onClick={() => rotate(true)}
+                    isExpandLeft={false}
+                />
+            )}
         </div>
     )
 }
 
 export default ProjectCarousel
-

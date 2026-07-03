@@ -8,7 +8,9 @@ import {
   faReact, faJs, faNodeJs, faDocker, faFigma, faGit, faHtml5, faCss3, faPython
 } from '@fortawesome/free-brands-svg-icons'
 import { faCode, faDatabase, faExchangeAlt } from '@fortawesome/free-solid-svg-icons'
+import { useInterface } from '../../contexts'
 
+/* Icons map */
 const ICONS = {
   python: faPython,
   javascript: faJs,
@@ -32,7 +34,10 @@ const ICONS = {
   default: faCode,
 }
 
+/* Skill badge component */
 const SkillBadge = ({ skill }) => {
+  const { isMobile } = useInterface();
+
   /* Get the icon for the skill */
   const getIcon = (skill) => {
     const oneWordSkill = skill.split(/[\s/.]+/)[0].toLowerCase()
@@ -41,7 +46,7 @@ const SkillBadge = ({ skill }) => {
 
   return (
     <InnerPanel>
-      <div className="flex flex-row gap-2 items-center font-bold text-lg">
+      <div className={`flex flex-row items-center font-bold ${isMobile ? 'text-xs gap-1' : 'text-lg gap-2'}`}>
         <FontAwesomeIcon icon={getIcon(skill)} style={{ color: 'var(--color-secondary)' }} />
         <p className="tracking-widest" style={{ color: 'var(--color-secondary)' }}>
           {skill}

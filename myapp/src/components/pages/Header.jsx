@@ -4,12 +4,13 @@
 
 import { useEffect, useState } from 'react'
 import { useInterface } from '../../contexts'
-import NAVIGATION_MAP from '../../maps/NAVIGATION_MAP'
-import { faSun, faMoon, faHome, faFile } from '@fortawesome/free-solid-svg-icons'
+import { useNavigation } from '../../contexts'
+import { faSun, faMoon, faHome } from '@fortawesome/free-solid-svg-icons'
 import { ExpandButton } from '../buttons'
 
 const Header = () => {
-  const { theme, toggleTheme } = useInterface()
+  const { theme, toggleTheme, isMobile } = useInterface()
+  const { navigationMap } = useNavigation()
 
   /* Scrolled state */
   const [scrolled, setScrolled] = useState(false)
@@ -42,7 +43,7 @@ const Header = () => {
       }}
     >
       {/* Header content */}
-      <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 py-4">
+      <div className={`mx-auto flex max-w-4xl items-center justify-between gap-4 py-4 ${isMobile ? 'px-4' : ''}`}>
         {/* Home button */}
         <ExpandButton
           label="Home"
@@ -52,17 +53,19 @@ const Header = () => {
         />
 
         {/* Navigation */}
-        <nav className="flex items-center gap-5">
-          {NAVIGATION_MAP.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-lg font-medium transition-colors hover:bg-gray-500/30 rounded-lg px-3 py-2"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        {!isMobile && (
+          <nav className="flex items-center gap-5">
+            {navigationMap && navigationMap.map((link) => (
+              <a
+                key={link.id}
+                href={link.href}
+                className="text-lg font-medium transition-colors hover:bg-gray-500/30 rounded-lg px-3 py-2"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+        )}
 
         {/* Theme toggle button */}
         <ExpandButton

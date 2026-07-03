@@ -7,12 +7,10 @@
  */
 
 /* Contexts */
-import { PortfolioProvider } from './contexts/PortfolioContext'
-import { InterfaceProvider } from './contexts/InterfaceContext'
+import { PortfolioProvider, InterfaceProvider, NavigationProvider } from './contexts'
 
 /* Components */
-import Header from './components/sections/Header'
-import Hero from './components/sections/Hero'
+import Header from './components/pages/Header'
 
 /* Maps */
 import NAVIGATION_MAP from './maps/NAVIGATION_MAP'
@@ -21,15 +19,15 @@ function App() {
   return (
     <InterfaceProvider>
       <PortfolioProvider>
-        <Header />
-        
-        <main>
-          <Hero />
-          {NAVIGATION_MAP.map(({ href, component: Component }) => (
-            <Component key={href} />
-          ))}
-        </main>
+        <NavigationProvider navigationMap={NAVIGATION_MAP}>
+          <Header />
 
+          <main>
+            {NAVIGATION_MAP && NAVIGATION_MAP.map(({ id, component: Component }) => (
+              <Component key={id} />
+            ))}
+          </main>
+        </NavigationProvider>
       </PortfolioProvider>
     </InterfaceProvider>
   )

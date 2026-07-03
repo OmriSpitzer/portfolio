@@ -2,9 +2,8 @@
  * Contact section
  */
 
-import SectionTitle from './SectionTitle'
-import { usePortfolio } from '../../contexts'
-import Section from './Section'
+import { Section, SectionTitle } from '../sectionUI'
+import { usePortfolio, useInterface } from '../../contexts'
 import { Panel } from '../panels'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
@@ -12,6 +11,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 
 const Contact = () => {
   const { portfolioData } = usePortfolio()
+  const { isMobile } = useInterface()
   if (!portfolioData?.profile) return null
 
   /* Get profile data */
@@ -49,7 +49,7 @@ const Contact = () => {
       />
 
       {/* Contact channels */}
-      <div className="grid grid-cols-3 gap-8">
+      <div className={`grid gap-8 ${isMobile ? 'grid-cols-1 w-full px-4' : 'grid-cols-3'}`}>
         {channels.map(({ label, value, href, icon }) => (
           <a
             key={label.toLowerCase()}

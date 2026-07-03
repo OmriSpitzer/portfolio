@@ -2,21 +2,24 @@
  * Skills section - Technologies & Tools
  */
 
-import SectionTitle from './SectionTitle'
-import Section from './Section'
+import { Section, SectionTitle } from '../sectionUI'
 import SkillBadge from '../badges/SkillBadge'
-import { usePortfolio } from '../../contexts'
+import { usePortfolio, useInterface } from '../../contexts'
 import { Panel } from '../panels'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCode, faServer, faWrench, faLanguage } from '@fortawesome/free-solid-svg-icons'
 
 const Skills = () => {
   const { portfolioData } = usePortfolio()
+  const { isMobile } = useInterface()
+
+  /* Check if the portfolio data is loaded */
   if (!portfolioData?.skills) return null
 
   /* Skills data */
   const { skills } = portfolioData
 
+  /* Get the UI info for the skill */
   const getUIInfo = (id) => {
     switch (id) {
       case 'languages':
@@ -33,7 +36,7 @@ const Skills = () => {
   }
   return (
     <Section id="skills">
-      <div className="mx-auto max-w-6xl">
+      <div className={`mx-auto max-w-6xl ${isMobile ? 'px-4' : ''}`}>
         {/* Header */}
         <SectionTitle
           label="Skills"
@@ -42,25 +45,25 @@ const Skills = () => {
         />
 
         {/* Skills categories */}
-        <div className="w-full flex flex-col gap-5">
+        <div className={`w-full flex flex-col ${isMobile ? 'gap-2' : 'gap-5'}`}>
           {skills.map((skill) => {
             const skillUI = getUIInfo(skill.id);
 
             return (
               <Panel key={skill.id} color={skillUI.color} className="flex-1">
                 {/* Category name */}
-                <div className="flex flex-row gap-2 items-center mb-4">
+                <div className={`flex flex-row gap-2 items-center ${isMobile ? 'mb-2' : 'mb-4'}`}>
                   <FontAwesomeIcon
                     icon={skillUI.icon}
-                    className="text-xl"
+                    className={`${isMobile ? 'text-lg' : 'text-xl'}`}
                   />
-                  <p className="text-2xl tracking-widest font-medium">
+                  <p className={`${isMobile ? 'text-lg' : 'text-2xl'} tracking-widest font-medium`}>
                     {skill.name}
                   </p>
                 </div>
 
                 {/* Category skills */}
-                <div className="flex flex-wrap gap-4">
+                <div className={`flex flex-wrap ${isMobile ? 'gap-2' : 'gap-4'}`}>
                   {skill.skills.map((skill) => (
                     <SkillBadge key={skill} skill={skill} />
                   ))}

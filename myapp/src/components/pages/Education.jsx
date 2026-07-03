@@ -2,9 +2,8 @@
  * Experience section - Work history
  */
 
-import SectionTitle from './SectionTitle'
-import { usePortfolio } from '../../contexts'
-import Section from './Section'
+import { Section, SectionTitle } from '../sectionUI'
+import { usePortfolio, useInterface } from '../../contexts'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
 import { Panel, InnerPanel } from '../panels'
@@ -14,7 +13,9 @@ import { useEffect, useState } from 'react'
 const Education = () => {
   const [displayHighlights, setDisplayHighlights] = useState([])
   const { portfolioData } = usePortfolio()
+  const { isMobile } = useInterface()
 
+  /* Check if the portfolio data is loaded */
   if (!portfolioData?.education) return null
 
   /* Education data */
@@ -29,7 +30,7 @@ const Education = () => {
 
   return (
     <Section id="education">
-      <div className="mx-auto max-w-6xl px-4 md:px-6">
+      <div className={`mx-auto max-w-6xl ${isMobile ? 'px-4' : 'px-6'}`}>
         {/* Section title */}
         <SectionTitle
           label="Education"
@@ -39,30 +40,30 @@ const Education = () => {
 
         {/* Timeline items */}
         <div>
-          <Panel className="flex flex-col gap-3">
+          <Panel className={`flex flex-col ${isMobile ? 'gap-1' : 'gap-3'}`}>
             {/* Detail Title */}
-            <div className="flex flex-row justify-between">
+            <div className={`flex justify-between ${isMobile ? 'flex-col gap-2' : 'flex-row'}`}>
               {/* Degree */}
               <div className="flex flex-row gap-2 items-center">
                 <FontAwesomeIcon
                   icon={faGraduationCap}
-                  className="text-2xl tracking-wider"
+                  className={`${isMobile ? 'text-md' : 'text-2xl'} tracking-wider`}
                 />
-                <p className="text-2xl tracking-widest font-medium">{degree}</p>
+                <p className={`${isMobile ? 'text-sm' : 'text-2xl'} tracking-widest font-medium`}>{degree}</p>
               </div>
 
               {/* Period */}
-              <p className="text-xl tracking-wider" style={{ color: 'var(--color-accent)' }}>{period}</p>
+              <p className={`${isMobile ? 'text-md' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-accent)' }}>{period}</p>
             </div>
 
             {/* Institution */}
-            <p className="text-xl tracking-wider" style={{ color: 'var(--color-tertiary)' }}>{institution}</p>
+            <p className={`${isMobile ? 'text-md' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-tertiary)' }}>{institution}</p>
 
             {/* Highlights */}
             <div className="flex flex-col gap-2">
               {displayHighlights.map((highlight, index) => (
                 <ListedLabel key={'highlight-' + index}>
-                  <p className="text-lg tracking-wider font-medium">
+                  <p className={`${isMobile ? 'text-md' : 'text-lg'} tracking-wider font-medium`}>
                     {highlight}
                   </p>
                 </ListedLabel>
