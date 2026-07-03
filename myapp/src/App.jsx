@@ -12,7 +12,6 @@ import { InterfaceProvider } from './contexts/InterfaceContext'
 
 /* Components */
 import Header from './components/sections/Header'
-import Footer from './components/sections/Footer'
 import Hero from './components/sections/Hero'
 
 /* Maps */
@@ -31,7 +30,6 @@ function App() {
           ))}
         </main>
 
-        <Footer />
       </PortfolioProvider>
     </InterfaceProvider>
   )

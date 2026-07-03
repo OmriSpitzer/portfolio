@@ -5,7 +5,7 @@
 import { useEffect, useState } from 'react'
 import { useInterface } from '../../contexts'
 import NAVIGATION_MAP from '../../maps/NAVIGATION_MAP'
-import { faSun, faMoon, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faSun, faMoon, faHome, faFile } from '@fortawesome/free-solid-svg-icons'
 import { ExpandButton } from '../buttons'
 
 const Header = () => {
@@ -37,12 +37,12 @@ const Header = () => {
         }`
       }
       style={{
-        backgroundColor: scrolled ? 'var(--header-bg-scrolled)' : 'transparent',
-        borderColor: scrolled ? 'var(--header-border)' : 'transparent',
+        backgroundColor: scrolled ? '' : 'transparent',
+        borderColor: scrolled ? '' : 'transparent',
       }}
     >
       {/* Header content */}
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 md:px-6">
+      <div className="mx-auto flex max-w-4xl items-center justify-between gap-4 py-4">
         {/* Home button */}
         <ExpandButton
           label="Home"
@@ -52,12 +52,12 @@ const Header = () => {
         />
 
         {/* Navigation */}
-        <nav className="hidden items-center gap-5 md:flex">
+        <nav className="flex items-center gap-5">
           {NAVIGATION_MAP.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium transition-colors hover:bg-[var(--header-hover-bg)] rounded-lg px-3 py-2"
+              className="text-lg font-medium transition-colors hover:bg-gray-500/30 rounded-lg px-3 py-2"
             >
               {link.label}
             </a>

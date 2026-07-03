@@ -55,7 +55,7 @@ export default function Hero() {
             <HeroButton label="View Projects" gotoHref="#projects" />
 
             {/* Resume button */}
-            <HeroButton label="Download Resume" />
+            <HeroButton label="Download Resume" isResume={true} />
 
             {/* Contact button */}
             <HeroButton label="Get in Touch" gotoHref="#contact" />

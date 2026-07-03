@@ -3,7 +3,7 @@
  */
 
 import { useRef, useState } from 'react'
-import ProjectCard from '../cards/ProjectCard'
+import ProjectCard from './ProjectCard'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { ExpandButton } from '../buttons'
 
@@ -87,7 +87,7 @@ const ProjectCarousel = ({ items }) => {
     }
 
     return (
-        <div className="w-full flex flex-row justify-center items-center gap-6">
+        <div className="w-full h-full flex flex-row justify-center items-center gap-6">
             {/* Previous button */}
             <ExpandButton
                 label="Previous"

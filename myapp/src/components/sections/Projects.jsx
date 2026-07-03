@@ -5,7 +5,7 @@
 import SectionTitle from './SectionTitle'
 import { usePortfolio } from '../../contexts'
 import Section from './Section'
-import ProjectCarousel from './ProjectCarousel'
+import { ProjectCarousel } from '../carousel'
 
 const Projects = () => {
   const { portfolioData } = usePortfolio()

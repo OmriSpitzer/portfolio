@@ -121,7 +121,7 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-3 py-1.5 text-sm font-medium text-slate-300 transition-colors hover:border-sky-500/50 hover:text-sky-400"
+              className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:border-sky-500/50 hover:text-sky-400"
             >
               <FontAwesomeIcon icon={faGithub} className="text-xs" />
               Source
