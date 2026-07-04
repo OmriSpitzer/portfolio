@@ -26,7 +26,6 @@ const ExpandButton = ({ label, icon, onClick, isExpandLeft = false }) => {
                     group-hover:justify-start group-hover:z-20
                     ${isExpandLeft ? 'right-0 flex-row-reverse' : 'left-0'}`}
                 style={{
-                    borderColor: 'var(--header-button-border)',
                     color: 'var(--color-secondary)',
                 }}
                 onClick={onClick}
