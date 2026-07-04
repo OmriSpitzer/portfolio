@@ -20,8 +20,9 @@ const WIDTH_REDUCTION_PERCENTAGE = 20
 const CARD_HEIGHT = 550
 const CARD_WIDTH = 350
 
-/* Mobile card dimensions */
+/* Mobile button position */
 const MOBILE_CARD_HEIGHT = 500
+const MOBILE_CARD_WIDTH = 250
 
 /* Minimum horizontal travel (px) to register a swipe */
 const SWIPE_THRESHOLD = 50
@@ -54,7 +55,7 @@ const ProjectCarousel = ({ items }) => {
     if (!items?.length) return null
 
     /* Mobile card width fits the viewport, capped at the desktop width */
-    const mobileCardWidth = Math.min(window.innerWidth - 48, CARD_WIDTH)
+    const mobileCardWidth = isMobile ? Math.min(window.innerWidth - 48, MOBILE_CARD_WIDTH) : CARD_WIDTH
 
     /* Number of visible cards and per-slide travel distance depend on the layout */
     const visibleCount = isMobile ? MOBILE_VISIBLE_COUNT : VISIBLE_COUNT
@@ -127,14 +128,12 @@ const ProjectCarousel = ({ items }) => {
     return (
         <div className={`w-full h-full flex flex-row justify-center items-center ${isMobile ? 'gap-2' : 'gap-6'}`}>
             {/* Previous button */}
-            {!isMobile && (
-                <ExpandButton
-                    label="Previous"
-                    icon={faChevronLeft}
-                    onClick={() => rotate(false)}
-                    isExpandLeft={true}
-                />
-            )}
+            <ExpandButton
+                label="Previous"
+                icon={faChevronLeft}
+                onClick={() => rotate(false)}
+                isExpandLeft={true}
+            />
 
             {/* Carousel container */}
             <div
@@ -180,14 +179,12 @@ const ProjectCarousel = ({ items }) => {
             </div>
 
             {/* Next button */}
-            {!isMobile && (
-                <ExpandButton
-                    label="Next"
-                    icon={faChevronRight}
-                    onClick={() => rotate(true)}
-                    isExpandLeft={false}
-                />
-            )}
+            <ExpandButton
+                label="Next"
+                icon={faChevronRight}
+                onClick={() => rotate(true)}
+                isExpandLeft={false}
+            />
         </div>
     )
 }

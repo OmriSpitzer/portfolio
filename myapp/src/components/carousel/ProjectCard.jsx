@@ -8,9 +8,11 @@ import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { useInterface } from '../../contexts'
 
 const ProjectCard = ({ project, onCardClick = () => { } }) => {
   const [isHovering, setIsHovering] = useState(false)
+  const { isMobile } = useInterface()
 
   /* If no project, return null */
   if (!project) return null;
@@ -25,9 +27,8 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
 
   return (
     <article
-      className="flex h-full flex-col overflow-hidden rounded-2xl hover:shadow-lg 
-      hover:shadow-sky-500/50 hover:border-sky-500/50 border border-transparent t
-      ransition-all duration-200"
+      className='overflow-hidden flex h-full flex-col rounded-2xl hover:shadow-lg 
+      hover:shadow-sky-500/50 hover:border-sky-500/50 border border-transparent transition-all duration-200'
       onMouseEnter={toggleHover}
       onMouseLeave={toggleHover}
       onClick={onCardClick}
@@ -53,7 +54,7 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
       </div>
 
       <div
-        className={`h-full flex flex-col p-3 gap-3 ${isHovering ? 'overflow-y-auto' : 'overflow-hidden'}`}
+        className={`h-full flex flex-col p-3 gap-3 ${isMobile ? 'overflow-y-auto' : isHovering ? 'overflow-y-auto' : 'overflow-hidden'}`}
         style={{ backgroundColor: 'var(--color-background)' }}
       >
         {/* Project Title */}

@@ -16,7 +16,7 @@ const Projects = () => {
 
   return (
     <Section id="projects">
-      <div className={`mx-auto max-w-6xl ${isMobile ? 'px-4 flex flex-col gap-4' : 'px-6'}`}>
+      <div className={`mx-auto max-w-6xl ${isMobile ? 'px-4 flex flex-col' : 'px-6'}`}>
         {/* Section title */}
         <SectionTitle
           label="Projects"
