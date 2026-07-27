@@ -9,7 +9,7 @@ const SectionTitle = ({ label = 'Default', title = 'Default', description = 'Def
   const { isMobile } = useInterface()
 
   return (
-    <div className={`${isMobile ? 'mb-8 text-center' : 'mb-14'} ${className}`}>
+    <div className={`${isMobile ? 'mb-8 text-center' : 'mb-6'} ${className}`}>
       {/* Small header */}
       <SmallHeader label={label} />
 

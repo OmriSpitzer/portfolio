@@ -40,3 +40,29 @@ body {
   scrollbar-width: 10px;
   scrollbar-color: var(--color-accent) transparent;
 }
+
+/* Background animation */
+@keyframes blob-out {
+  0%, 100% { transform: scale(0.6) translate(0, 0); }
+  50% { transform: scale(1) translate(4%, -3%); }
+}
+
+@keyframes blob-in {
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(0.6) translate(-3%, 4%); }
+}
+
+.animate-blob-out {
+  animation: blob-out 5s ease-in-out infinite;
+}
+
+.animate-blob-in {
+  animation: blob-in 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob-out,
+  .animate-blob-in {
+    animation: none;
+  }
+}

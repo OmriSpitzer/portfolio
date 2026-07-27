@@ -45,7 +45,7 @@ const Skills = () => {
         />
 
         {/* Skills categories */}
-        <div className={`w-full flex flex-col ${isMobile ? 'gap-2' : 'gap-5'}`}>
+        <div className={`w-full flex flex-col ${isMobile ? 'gap-2' : 'gap-3'}`}>
           {skills.map((skill) => {
             const skillUI = getUIInfo(skill.id);
 
