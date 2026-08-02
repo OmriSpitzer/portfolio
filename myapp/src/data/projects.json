@@ -1,5 +1,25 @@
 [
   {
+    "title": "Concert Discovery Website",
+    "description": "Event discovery engine that orchestrates multi-source data from Ticketmaster and Spotify APIs",
+    "contributions": [
+      "Full implementation of the architecture and functionality",
+      "Development of server-side data aggregation and filtering logic",
+      "Optimization of asynchronous client-server interactions"
+    ],
+    "technologies": [
+      "Node.js",
+      "React",
+      "Tailwind CSS",
+      "MongoDB",
+      "REST APIs",
+      "WebSocket"
+    ],
+    "image": "concert_discovery_img.png",
+    "liveUrl": "https://www.bandvoyage.com/",
+    "repoUrl": "https://github.com/IOC-Group/Bandvoyage_project"
+  },
+  {
     "title": "Model-Based Code GenAI (MOSAIC)",
     "description": "Multi-role GenAI platform that converts client requirements into production-ready full-stack web applications",
     "contributions": [
@@ -19,26 +39,6 @@
     "image": "MOSAIC_img.png",
     "liveUrl": "https://model-based-code-genai-1.onrender.com",
     "repoUrl": "https://github.com/Stava06/Model-Based-Code-GenAI"
-  },
-  {
-    "title": "Concert Discovery Website",
-    "description": "Event discovery engine that orchestrates multi-source data from Ticketmaster and Spotify APIs",
-    "contributions": [
-      "Full implementation of the architecture and functionality",
-      "Development of server-side data aggregation and filtering logic",
-      "Optimization of asynchronous client-server interactions"
-    ],
-    "technologies": [
-      "Node.js",
-      "React",
-      "Tailwind CSS",
-      "MongoDB",
-      "REST APIs",
-      "WebSocket"
-    ],
-    "image": "concert_discovery_img.png",
-    "liveUrl": "https://www.bandvoyage.com/",
-    "repoUrl": "https://github.com/IOC-Group/Bandvoyage_project"
   },
   {
     "title": "Interactive Math Learning Website",
