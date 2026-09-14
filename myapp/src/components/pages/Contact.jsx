@@ -8,11 +8,11 @@ import { Panel } from '../panels'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { DropIn } from '../../hooks'
 
 const Contact = () => {
   const { portfolioData } = usePortfolio()
   const { isMobile } = useInterface()
-  if (!portfolioData?.profile) return null
 
   /* Get profile data */
   const { profile } = portfolioData
@@ -41,53 +41,57 @@ const Contact = () => {
 
   return (
     <Section id="contact">
-      {/* Section title */}
-      <SectionTitle
-        label="Contact"
-        title="Let's Connect"
-        description="Interested in working together? Reach out — I'd love to hear from you."
-      />
+      <DropIn enabled={Boolean(portfolioData.profile)}>
+        {/* Section title */}
+        <SectionTitle
+          data-drop
+          label="Contact"
+          title="Let's Connect"
+          description="Interested in working together? Reach out — I'd love to hear from you."
+        />
 
-      {/* Contact channels */}
-      <div className={`grid gap-8 ${isMobile ? 'grid-cols-1 w-full px-4' : 'grid-cols-3'}`}>
-        {channels.map(({ label, value, href, icon }) => (
-          <a
-            key={label.toLowerCase()}
-            href={href}
-            target={label.toLowerCase() === 'email' ? undefined : '_blank'}
-            rel={label.toLowerCase() === 'email' ? undefined : 'noopener noreferrer'}
-            className="group"
-          >
-            <Panel
-              className="flex h-full flex-col items-center gap-3 text-center 
-                transition-all duration-300 group-hover:-translate-y-4"
-              color="blue"
+        {/* Contact channels */}
+        <div className={`grid gap-8 ${isMobile ? 'grid-cols-1 w-full px-4' : 'grid-cols-3'}`}>
+          {channels.map(({ label, value, href, icon }) => (
+            <a
+              key={label.toLowerCase()}
+              href={href}
+              target={label.toLowerCase() === 'email' ? undefined : '_blank'}
+              rel={label.toLowerCase() === 'email' ? undefined : 'noopener noreferrer'}
+              data-drop
+              className="group"
             >
-              {/* Icon */}
-              <FontAwesomeIcon
-                icon={icon}
-                className="text-4xl"
-                style={{ color: 'var(--color-accent)' }}
-              />
-
-              {/* Label */}
-              <span
-                className="text-lg uppercase tracking-widest font-semibold"
+              <Panel
+                className="flex h-full flex-col items-center gap-3 text-center 
+                transition-all duration-300 group-hover:-translate-y-4"
+                color="blue"
               >
-                {label}
-              </span>
+                {/* Icon */}
+                <FontAwesomeIcon
+                  icon={icon}
+                  className="text-4xl"
+                  style={{ color: 'var(--color-accent)' }}
+                />
 
-              {/* Contact value */}
-              <span
-                className="text-sm font-semibold tracking-widest"
-                style={{ color: 'var(--color-secondary)' }}
-              >
-                {value}
-              </span>
-            </Panel>
-          </a>
-        ))}
-      </div>
+                {/* Label */}
+                <span
+                  className="text-lg uppercase tracking-widest font-semibold"
+                >
+                  {label}
+                </span>
+
+                {/* Contact value */}
+                <span
+                  className="text-sm font-semibold tracking-widest"
+                  style={{ color: 'var(--color-secondary)' }}
+                >
+                  {value}
+                </span>
+              </Panel>
+            </a>
+          ))}
+        </div>
+      </DropIn>
     </Section>
   )
 }

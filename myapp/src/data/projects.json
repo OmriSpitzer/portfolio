@@ -20,6 +20,25 @@
     "repoUrl": "https://github.com/IOC-Group/Bandvoyage_project"
   },
   {
+    "title": "Distributed Chat Server",
+    "description": "Multi-node chat cluster, built from scratch in C++ — no shared database, no single point of failure.",
+    "contributions": [
+      "Design of the server architecture",
+      "Development of the server logic",
+      "Development of the server tests"
+    ],
+    "technologies": [
+      "C++",
+      "CMake",
+      "Testing",
+      "Threading",
+      "Networking"
+    ],
+    "image": "",
+    "liveUrl": "",
+    "repoUrl": "https://github.com/OmriSpitzer/Distributed-Chat-Server"
+  },
+  {
     "title": "Model-Based Code GenAI (MOSAIC)",
     "description": "Multi-role GenAI platform that converts client requirements into production-ready full-stack web applications",
     "contributions": [

@@ -1,3 +1,7 @@
+/**
+ * Data used for the website
+ */
+
 import profile from './profile.json'
 import skills from './skills.json'
 import education from './education.json'
