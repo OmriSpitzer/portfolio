@@ -8,7 +8,7 @@ import SectionFooter from './SectionFooter';
 
 const Section = ({ id, children }) => {
     const { isMobile } = useInterface();
-    const { getNextSection } = useNavigation();
+    const { getNextSection, currentId } = useNavigation();
 
     /* If no id, return null */
     if (!id) return null;
