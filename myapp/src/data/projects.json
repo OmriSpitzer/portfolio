@@ -21,20 +21,24 @@
   },
   {
     "title": "Distributed Chat Server",
-    "description": "Multi-node chat cluster, built from scratch in C++ — no shared database, no single point of failure.",
+    "description": "Something like: C++17 multi-node chat cluster with framed TCP, gossip sync, per-node SQLite, Argon2id auth, and Qt GUIs — no shared DB or single point of failure.",
     "contributions": [
-      "Design of the server architecture",
-      "Development of the server logic",
-      "Development of the server tests"
+      "Design of multi-node gossip architecture with anti-entropy sync",
+      "Implementation of Qt client and server interfaces (plus console UIs)",
+      "Design of per-node SQLite schema and persistence for users, rooms, and messages",
+      "Development of Catch2 coverage across client, server, and utils"
     ],
     "technologies": [
       "C++",
       "CMake",
+      "Qt 6",
+      "SQLite",
+      "Argon2id",
       "Testing",
       "Threading",
       "Networking"
     ],
-    "image": "",
+    "image": "distributed_chat_server.jpg",
     "liveUrl": "",
     "repoUrl": "https://github.com/OmriSpitzer/Distributed-Chat-Server"
   },
