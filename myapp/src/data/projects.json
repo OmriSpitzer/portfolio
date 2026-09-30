@@ -21,25 +21,31 @@
   },
   {
     "title": "Distributed Chat Server",
-    "description": "Something like: C++17 multi-node chat cluster with framed TCP, gossip sync, per-node SQLite, Argon2id auth, and Qt GUIs — no shared DB or single point of failure.",
+    "description": "C++17 multi-node chat cluster with TCP and WebSocket clients, gossip replication, automatic failover, per-node SQLite, Argon2id authentication, and Qt and React interfaces.",
     "contributions": [
-      "Design of multi-node gossip architecture with anti-entropy sync",
-      "Implementation of Qt client and server interfaces (plus console UIs)",
-      "Design of per-node SQLite schema and persistence for users, rooms, and messages",
-      "Development of Catch2 coverage across client, server, and utils"
+      "Designed a multi-node gossip architecture with anti-entropy recovery",
+      "Implemented shared binary packet framing across TCP and WebSocket transports",
+      "Built Qt, console, and React chat clients",
+      "Developed client failover and session reconnection between server nodes",
+      "Designed per-node SQLite persistence for users, rooms, memberships, and messages",
+      "Created Catch2 coverage across client, server, transport, and utility components"
     ],
     "technologies": [
-      "C++",
+      "C++17",
       "CMake",
       "Qt 6",
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "WebSocket",
+      "TCP/IP",
       "SQLite",
       "Argon2id",
-      "Testing",
-      "Threading",
-      "Networking"
+      "Catch2",
+      "Multithreading"
     ],
     "image": "distributed_chat_server.jpg",
-    "liveUrl": "",
+    "liveUrl": "https://distributed-chat-web.onrender.com/",
     "repoUrl": "https://github.com/OmriSpitzer/Distributed-Chat-Server"
   },
   {
