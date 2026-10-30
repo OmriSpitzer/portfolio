@@ -1,5 +1,5 @@
 /**
- * Experience section - Work history
+ * Education section - Educational background
  */
 
 import { Section, SectionTitle } from '../sectionUI'
@@ -8,25 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
 import { Panel, InnerPanel } from '../panels'
 import { ListedLabel } from '../labels'
-import { useEffect, useState } from 'react'
 
 const Education = () => {
-  const [displayHighlights, setDisplayHighlights] = useState([])
   const { portfolioData } = usePortfolio()
   const { isMobile } = useInterface()
 
   /* Check if the portfolio data is loaded */
-  if (!portfolioData?.education) return null
+  if (!portfolioData?.education?.length) return null
 
   /* Education data */
   const { education } = portfolioData
-  const { degree, institution, period, highlights, courses } = education
-
-  /* Add courses to highlights if there are any */
-  useEffect(() => {
-    if (courses.length > 0)
-      setDisplayHighlights([...highlights, 'Highlighted courses:'])
-  }, [courses, highlights])
 
   return (
     <Section id="education">
@@ -38,52 +29,60 @@ const Education = () => {
           description="My educational journey and key achievements."
         />
 
-        {/* Timeline items */}
-        <div>
-          <Panel className={`flex flex-col ${isMobile ? 'gap-1' : 'gap-3'}`}>
-            {/* Detail Title */}
-            <div className={`flex justify-between ${isMobile ? 'flex-col gap-2' : 'flex-row'}`}>
-              {/* Degree */}
-              <div className="flex flex-row gap-2 items-center">
-                <FontAwesomeIcon
-                  icon={faGraduationCap}
-                  className={`${isMobile ? 'text-md' : 'text-2xl'} tracking-wider`}
-                />
-                <p className={`${isMobile ? 'text-sm' : 'text-2xl'} tracking-widest font-medium`}>{degree}</p>
-              </div>
+        {/* Education items */}
+        <div className={`flex flex-col ${isMobile ? 'gap-4' : 'gap-6'}`}>
+          {education.map(({ degree, institution, period, highlights, courses }, index) => {
+            const displayHighlights = courses.length > 0
+              ? [...highlights, 'Highlighted courses:']
+              : highlights
 
-              {/* Period */}
-              <p className={`${isMobile ? 'text-md' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-accent)' }}>{period}</p>
-            </div>
+            return (
+              <Panel key={'education-' + index} className={`flex flex-col ${isMobile ? 'gap-1' : 'gap-3'}`}>
+                {/* Detail Title */}
+                <div className={`flex justify-between ${isMobile ? 'flex-col gap-2' : 'flex-row'}`}>
+                  {/* Degree */}
+                  <div className="flex flex-row gap-2 items-center">
+                    <FontAwesomeIcon
+                      icon={faGraduationCap}
+                      className={`${isMobile ? 'text-md' : 'text-2xl'} tracking-wider`}
+                    />
+                    <p className={`${isMobile ? 'text-sm' : 'text-2xl'} tracking-widest font-medium`}>{degree}</p>
+                  </div>
 
-            {/* Institution */}
-            <p className={`${isMobile ? 'text-md' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-tertiary)' }}>{institution}</p>
+                  {/* Period */}
+                  <p className={`${isMobile ? 'text-md' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-accent)' }}>{period}</p>
+                </div>
 
-            {/* Highlights */}
-            <div className="flex flex-col gap-2">
-              {displayHighlights.map((highlight, index) => (
-                <ListedLabel key={'highlight-' + index}>
-                  <p className={`${isMobile ? 'text-md' : 'text-lg'} tracking-wider font-medium`}>
-                    {highlight}
-                  </p>
-                </ListedLabel>
-              ))}
-            </div>
+                {/* Institution */}
+                <p className={`${isMobile ? 'text-md' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-tertiary)' }}>{institution}</p>
 
-            {/* Course List */}
-            {courses.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {courses.map((course, index) => (
-                  <InnerPanel key={'course-' + index} color='blue'>
-                    <p className="text-sm tracking-wider font-medium">{course}</p>
-                  </InnerPanel>
-                ))}
-              </div>
-            )}
-          </Panel>
+                {/* Highlights */}
+                <div className="flex flex-col gap-2">
+                  {displayHighlights.map((highlight, highlightIndex) => (
+                    <ListedLabel key={'highlight-' + highlightIndex}>
+                      <p className={`${isMobile ? 'text-md' : 'text-lg'} tracking-wider font-medium`}>
+                        {highlight}
+                      </p>
+                    </ListedLabel>
+                  ))}
+                </div>
+
+                {/* Course List */}
+                {courses.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {courses.map((course, courseIndex) => (
+                      <InnerPanel key={'course-' + courseIndex} color='blue'>
+                        <p className="text-sm tracking-wider font-medium">{course}</p>
+                      </InnerPanel>
+                    ))}
+                  </div>
+                )}
+              </Panel>
+            )
+          })}
         </div>
       </div>
-    </Section >
+    </Section>
   )
 }
 
