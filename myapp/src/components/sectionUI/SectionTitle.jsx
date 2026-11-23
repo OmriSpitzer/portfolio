@@ -15,7 +15,7 @@ const SectionTitle = ({ label = 'Default', title = 'Default', description = 'Def
 
       {/* Title */}
       <h2
-        className={`${isMobile ? 'text-3xl' : 'text-5xl'} font-bold tracking-tight`}
+        className={`${isMobile ? 'text-3xl' : 'text-4xl'} font-bold tracking-tight`}
         style={{ color: 'var(--color)' }}
       >
         {title}

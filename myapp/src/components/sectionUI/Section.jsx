@@ -22,13 +22,17 @@ const Section = ({ id, children }) => {
             <SectionBackground id={id} />
 
             {/* Content */}
-            <div className={`w-full flex flex-col z-50
-                    ${isMobile ? 'px-6 items-start' : 'items-center min-h-screen'}`}
+            <div className={`relative z-10 flex min-h-screen w-full flex-col p-10
+                    ${isMobile ? 'items-stretch' : 'items-center'}`}
             >
-                <div className={`flex-1 flex flex-col
-                        ${isMobile ? 'justify-start items-start mb-4' : 'justify-center items-center'}`}
+                <div className={`flex flex-1 flex-col
+                        ${isMobile ? 'justify-start items-start' : 'justify-center items-center'}`}
                 >
-                    {children}
+                    <div className={`w-fit rounded-2xl border border-blue-500 bg-[var(--color-background)] p-4
+                            ${isMobile ? 'mb-4 w-full' : ''}`}
+                    >
+                        {children}
+                    </div>
                 </div>
 
                 {/* Footer */}

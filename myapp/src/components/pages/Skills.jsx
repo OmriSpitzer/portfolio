@@ -55,9 +55,9 @@ const Skills = () => {
                 <div className={`flex flex-row gap-2 items-center ${isMobile ? 'mb-2' : 'mb-4'}`}>
                   <FontAwesomeIcon
                     icon={skillUI.icon}
-                    className={`${isMobile ? 'text-lg' : 'text-xl'}`}
+                    className={`${isMobile ? 'text-lg' : 'text-lg'}`}
                   />
-                  <p className={`${isMobile ? 'text-lg' : 'text-2xl'} tracking-widest font-medium`}>
+                  <p className={`${isMobile ? 'text-lg' : 'text-xl'} tracking-widest font-medium`}>
                     {skill.name}
                   </p>
                 </div>
