@@ -28,7 +28,7 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
   return (
     <article
       className='overflow-hidden flex h-full flex-col rounded-2xl hover:shadow-lg 
-      hover:shadow-sky-500/50 hover:border-sky-500/50 border border-transparent transition-all duration-200'
+      hover:shadow-sky-500/50 hover:border-sky-500/50 border border-gray-300 transition-all duration-200'
       onMouseEnter={toggleHover}
       onMouseLeave={toggleHover}
       onClick={onCardClick}
