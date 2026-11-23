@@ -18,12 +18,13 @@ const ExpandButton = ({ label, icon, onClick, isExpandLeft = false }) => {
             <button
                 type="button"
                 className={`
-                    ${isMobile ? 'w-6 px-1' : 'max-w-10 px-3'}
+                    ${isMobile ? 'w-12 px-1' : 'max-w-10 px-3'}
                     absolute top-0 flex h-10 items-center justify-center overflow-hidden
                     whitespace-nowrap rounded-lg border cursor-pointer
                     transition-[max-width,background-color,color,gap,padding] duration-300 ease-in-out
-                    group-hover:max-w-48 group-hover:gap-2 group-hover:px-3
-                    group-hover:justify-start group-hover:z-20
+                    ${isMobile
+                        ? ''
+                        : 'group-hover:max-w-48 group-hover:gap-2 group-hover:px-3 group-hover:justify-start group-hover:z-20'}
                     ${isExpandLeft ? 'right-0 flex-row-reverse' : 'left-0'}`}
                 style={{
                     color: 'var(--color-secondary)',
@@ -32,10 +33,10 @@ const ExpandButton = ({ label, icon, onClick, isExpandLeft = false }) => {
             >
                 {label && (
                     <span
-                        className="
+                        className={`
                             max-w-0 overflow-hidden text-md font-bold opacity-0
                             transition-[max-width,opacity] duration-300 ease-in-out
-                            group-hover:max-w-40 group-hover:opacity-100"
+                            ${isMobile ? '' : 'group-hover:max-w-40 group-hover:opacity-100'}`}
                     >
                         {label}
                     </span>

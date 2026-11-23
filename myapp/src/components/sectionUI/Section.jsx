@@ -19,17 +19,17 @@ const Section = ({ id, children }) => {
             className={`relative flex min-h-screen overflow-hidden ${isMobile ? 'pt-25' : 'items-center'}`}
         >
             {/* Background */}
-            <SectionBackground id={id} />
+            {!isMobile && <SectionBackground id={id} />}
 
             {/* Content */}
             <div className={`relative z-10 flex min-h-screen w-full flex-col p-10
                     ${isMobile ? 'items-stretch' : 'items-center'}`}
             >
-                <div className={`flex flex-1 flex-col
-                        ${isMobile ? 'justify-start items-start' : 'justify-center items-center'}`}
+                <div className={`
+                        ${isMobile ? 'justify-start items-start' : 'justify-center items-center flex flex-1 flex-col'}`}
                 >
-                    <div className={`w-fit rounded-2xl border border-blue-500 bg-[var(--color-background)] p-4
-                            ${isMobile ? 'mb-4 w-full' : ''}`}
+                    <div className={`
+                            ${isMobile ? 'mb-4 w-full' : 'w-fit rounded-2xl border border-blue-500 bg-[var(--color-background)] p-4'}`}
                     >
                         {children}
                     </div>

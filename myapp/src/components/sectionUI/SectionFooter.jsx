@@ -15,7 +15,7 @@ const SectionFooter = ({ next }) => {
   return (
     <a
       href={next.href}
-      className="flex w-full shrink-0 items-center justify-center gap-4 rounded-xl px-4 py-3 pb-8 text-lg font-semibold transition-colors"
+      className={`flex w-full shrink-0 items-center justify-center gap-4 rounded-xl px-4 py-3 pb-8 font-semibold transition-colors ${isMobile ? 'text-sm' : 'text-lg'}`}
       style={{ color: 'var(--color-accent)' }}
     >
       {/* Bouncing arrow icon */}
