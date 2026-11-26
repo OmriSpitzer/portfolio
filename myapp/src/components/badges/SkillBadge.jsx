@@ -46,7 +46,7 @@ const SkillBadge = ({ skill }) => {
 
   return (
     <InnerPanel>
-      <div className={`flex flex-row items-center font-bold ${isMobile ? 'text-xs gap-1' : 'text-lg gap-2'}`}>
+      <div className={`flex flex-row items-center font-bold ${isMobile ? 'text-[10px] gap-1' : 'text-lg gap-2'}`}>
         <FontAwesomeIcon icon={getIcon(skill)} style={{ color: 'var(--color-secondary)' }} />
         <p className="tracking-widest" style={{ color: 'var(--color-secondary)' }}>
           {skill}

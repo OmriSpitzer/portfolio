@@ -54,13 +54,13 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
       </div>
 
       <div
-        className={`h-full flex flex-col p-3 gap-3 ${isMobile ? 'overflow-y-auto' : isHovering ? 'overflow-y-auto' : 'overflow-hidden'}`}
+        className={`h-full flex flex-col p-3 ${isMobile ? 'overflow-y-auto gap-1' : isHovering ? 'overflow-y-auto gap-3' : 'overflow-hidden gap-3'}`}
         style={{ backgroundColor: 'var(--color-background)' }}
       >
         {/* Project Title */}
         {title && (
           <p
-          className="text-xl font-bold tracking-widest"
+          className={`${isMobile ? 'text-sm' : 'text-xl'} font-bold tracking-widest`}
           style={{ color: 'var(--color-accent)' }}
         >
           {title}
@@ -70,7 +70,7 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
         {/* Project Description */}
         {description && (
           <p
-          className="text-md tracking-wide"
+          className={`${isMobile ? 'text-[11px]' : 'text-md'} tracking-wide`}
           style={{ color: 'var(--color-secondary)' }}
         >
           {description}
@@ -82,7 +82,7 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
           <div className="flex flex-wrap gap-2">
           {contributions.map((contribution) => (
             <ListedLabel key={contribution}>
-              <p className="text-xs tracking-wider font-medium">
+              <p className={`${isMobile ? 'text-[10px]' : 'text-xs'} tracking-wider font-medium`}>
                 {contribution}
               </p>
             </ListedLabel>
@@ -91,10 +91,10 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
         )}
 
         {/* Project Technologies */}
-        <div className="flex flex-wrap gap-3 mt-2">
+        <div className={`flex flex-wrap ${isMobile ? 'gap-1 mt-1' : 'gap-3 mt-2'}`}>
           {technologies && technologies.map((tech) => (
             <InnerPanel key={tech} color='blue'>
-              <p className="text-xs tracking-wider font-semibold">
+              <p className={`${isMobile ? 'text-[8px]' : 'text-xs'} tracking-wider font-semibold`}>
                 {tech}
               </p>
             </InnerPanel>
@@ -102,14 +102,14 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
         </div>
 
         {/* Project Links */}
-        <div className="mt-auto flex flex-wrap gap-2 pt-2">
+        <div className={`mt-auto flex flex-wrap ${isMobile ? 'gap-1 pt-1' : 'gap-2 pt-2'}`}>
           {liveUrl && (
             <a
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-sky-400"
+              className={`inline-flex items-center rounded-lg bg-sky-500 px-3 py-1.5 font-semibold text-white transition-colors hover:bg-sky-400 ${isMobile ? 'text-[8px] gap-1' : 'text-sm  gap-2'}`}
             >
               <FontAwesomeIcon icon={faExternalLinkAlt} className="text-xs" />
               Live Demo
@@ -122,7 +122,7 @@ const ProjectCard = ({ project, onCardClick = () => { } }) => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-600 px-3 py-1.5 text-sm font-medium text-slate-500 transition-colors hover:border-sky-500/50 hover:text-sky-400"
+              className={`inline-flex items-center rounded-lg border border-slate-600 px-3 py-1.5 font-medium text-slate-500 transition-colors hover:border-sky-500/50 hover:text-sky-400 ${isMobile ? 'text-[8px] gap-1' : 'text-sm  gap-2'}`}
             >
               <FontAwesomeIcon icon={faGithub} className="text-xs" />
               Source

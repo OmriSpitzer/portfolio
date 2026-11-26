@@ -62,8 +62,8 @@ const Contact = () => {
               className="group"
             >
               <Panel
-                className="flex h-full flex-col items-center gap-3 text-center 
-                transition-all duration-300 group-hover:-translate-y-4"
+                className={`flex h-full flex-col items-center text-center 
+                transition-all duration-300 group-hover:-translate-y-4 ${isMobile ? 'gap-1' : 'gap-3'}`}
                 color="blue"
               >
                 {/* Icon */}
@@ -82,7 +82,7 @@ const Contact = () => {
 
                 {/* Contact value */}
                 <span
-                  className="text-sm font-semibold tracking-widest"
+                  className={`${isMobile ? 'text-[10px]' : 'text-sm'} font-semibold tracking-widest`}
                   style={{ color: 'var(--color-secondary)' }}
                 >
                   {value}

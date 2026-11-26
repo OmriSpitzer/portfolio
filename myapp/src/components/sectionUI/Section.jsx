@@ -22,8 +22,8 @@ const Section = ({ id, children }) => {
             {!isMobile && <SectionBackground id={id} />}
 
             {/* Content */}
-            <div className={`relative z-10 flex min-h-screen w-full flex-col p-10
-                    ${isMobile ? 'items-stretch' : 'items-center'}`}
+            <div className={`relative z-10 flex min-h-screen w-full flex-col 
+                    ${isMobile ? 'items-stretch p-5' : 'items-center p-10'}`}
             >
                 <div className={`
                         ${isMobile ? 'justify-start items-start' : 'justify-center items-center flex flex-1 flex-col'}`}

@@ -7,6 +7,7 @@ import ProjectCard from './ProjectCard'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import { ExpandButton } from '../buttons'
 import { useInterface } from '../../contexts'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 /* Visible items shown in the carousel */
 const VISIBLE_COUNT = 3
@@ -126,14 +127,15 @@ const ProjectCarousel = ({ items }) => {
     }
 
     return (
-        <div className={`w-full h-full flex flex-row justify-center items-center ${isMobile ? 'gap-2' : 'gap-6'}`}>
+        <div className={`w-full h-full flex flex-row justify-center items-center ${isMobile ? '' : 'gap-6'}`}>
             {/* Previous button */}
-            <ExpandButton
-                label="Previous"
-                icon={faChevronLeft}
+            <button
+                type="button"
+                className={`w-10 h-15 flex items-center justify-center ${isMobile ? 'w-12 px-1' : 'max-w-10 px-3'}`}
                 onClick={() => rotate(false)}
-                isExpandLeft={true}
-            />
+            >
+                <FontAwesomeIcon icon={faChevronLeft} />
+            </button>
 
             {/* Carousel container */}
             <div
@@ -179,12 +181,13 @@ const ProjectCarousel = ({ items }) => {
             </div>
 
             {/* Next button */}
-            <ExpandButton
-                label="Next"
-                icon={faChevronRight}
+            <button
+                type="button"
+                className={`w-10 h-15 flex items-center justify-center ${isMobile ? 'w-12 px-1' : 'max-w-10 px-3'}`}
                 onClick={() => rotate(true)}
-                isExpandLeft={false}
-            />
+            >
+                <FontAwesomeIcon icon={faChevronRight} />
+            </button>
         </div>
     )
 }

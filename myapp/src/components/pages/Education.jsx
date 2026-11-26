@@ -44,23 +44,23 @@ const Education = () => {
                   <div className="flex flex-row gap-2 items-center">
                     <FontAwesomeIcon
                       icon={faGraduationCap}
-                      className={`${isMobile ? 'text-md' : 'text-2xl'} tracking-wider`}
+                      className={`${isMobile ? 'text-sm' : 'text-2xl'} tracking-wider`}
                     />
-                    <p className={`${isMobile ? 'text-sm' : 'text-2xl'} tracking-widest font-medium`}>{degree}</p>
+                    <p className={`${isMobile ? 'text-[10px]' : 'text-2xl'} tracking-widest font-medium`}>{degree}</p>
                   </div>
 
                   {/* Period */}
-                  <p className={`${isMobile ? 'text-md' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-accent)' }}>{period}</p>
+                  <p className={`${isMobile ? 'text-sm' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-accent)' }}>{period}</p>
                 </div>
 
                 {/* Institution */}
-                <p className={`${isMobile ? 'text-md' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-tertiary)' }}>{institution}</p>
+                <p className={`${isMobile ? 'text-sm' : 'text-xl'} tracking-wider`} style={{ color: 'var(--color-tertiary)' }}>{institution}</p>
 
                 {/* Highlights */}
                 <div className="flex flex-col gap-2">
                   {displayHighlights.map((highlight, highlightIndex) => (
                     <ListedLabel key={'highlight-' + highlightIndex}>
-                      <p className={`${isMobile ? 'text-md' : 'text-lg'} tracking-wider font-medium`}>
+                      <p className={`${isMobile ? 'text-[10px] font-bold' : 'text-lg font-medium'} tracking-wider`}>
                         {highlight}
                       </p>
                     </ListedLabel>
@@ -72,7 +72,7 @@ const Education = () => {
                   <div className="flex flex-wrap gap-2">
                     {courses.map((course, courseIndex) => (
                       <InnerPanel key={'course-' + courseIndex} color='blue'>
-                        <p className="text-sm tracking-wider font-medium">{course}</p>
+                        <p className={`${isMobile ? 'text-[10px]' : 'text-sm'} tracking-wider font-medium`}>{course}</p>
                       </InnerPanel>
                     ))}
                   </div>

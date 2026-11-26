@@ -55,12 +55,12 @@ const About = () => {
             {/* Details items */}
             <div className={`w-full h-full flex flex-col ${isMobile ? 'gap-2' : 'gap-5'}`}>
               {detail_list.map((detail) => (
-                <div key={detail.label} className={`flex ${isMobile ? 'flex-row gap-2' : 'flex-col gap-1'}`}>
+                <div key={detail.label} className={`flex ${isMobile ? 'flex-row gap-2' : 'flex-col gap-1 items-wrap'}`}>
                   {/* Detail Title */}
                   <div className="flex flex-row gap-2 items-center">
                     <FontAwesomeIcon
                       icon={detail.icon}
-                      className={`${isMobile ? 'text-lg' : 'text-2xl'} tracking-wider`}
+                      className={`${isMobile ? 'text-md' : 'text-2xl'} tracking-wider`}
                       style={{ color: 'var(--color-tertiary)' }}
                     />
                     {!isMobile && <p
@@ -75,12 +75,12 @@ const About = () => {
                   {detail.href ? (
                     <a
                       href={detail.href}
-                      className={`${isMobile ? 'text-md' : 'text-xl'} tracking-widest underline hover:text-sky-400`}
+                      className={`${isMobile ? 'text-sm' : 'text-xl'} tracking-widest underline hover:text-sky-400`}
                     >
                       {detail.value}
                     </a>
                   ) : (
-                    <p className={`${isMobile ? 'text-md' : 'text-xl'} tracking-widest`} style={{ color: 'var(--color)' }}>
+                    <p className={`${isMobile ? 'text-sm' : 'text-xl'} tracking-widest`} style={{ color: 'var(--color)' }}>
                       {detail.value}
                     </p>
                   )}

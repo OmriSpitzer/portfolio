@@ -22,7 +22,7 @@ const SectionTitle = ({ label = 'Default', title = 'Default', description = 'Def
       </h2>
 
       {/* Description */}
-      {description && (
+      {!isMobile && description && (
         <p
           className={`mt-3 ${isMobile ? 'text-lg' : 'text-2xl'}`}
           style={{ color: 'var(--color-tertiary)' }}
